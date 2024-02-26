@@ -44,10 +44,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-/deep/ .menu{
-  .el-header {
-    padding: 0;
-    background: red;
-  }
-}
 </style>
