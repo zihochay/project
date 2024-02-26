@@ -1,13 +1,21 @@
 <template>
-  <div class="66">
-      模板
-  </div>
+    <div class="main">
+      <el-container>
+        <el-header>
+          <Menu />
+        </el-header>
+        <el-main>Main</el-main>
+      </el-container>
+    </div>
 </template>
 <script>
+import Menu from './components/menu.vue'
+
 export default {
-  name: 'text-main',
+  name: 'layout-main',
   components: {
   //   HelloWorld
+    Menu
   },
   data () {
     return {

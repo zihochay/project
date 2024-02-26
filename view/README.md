@@ -36,3 +36,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         hot: true, // 开启热更新
         port: 8080 // 设置端口号
     }
+3.Eslint插件 => 提示代码中ESLint语法错误
+  
