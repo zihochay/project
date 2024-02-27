@@ -40,5 +40,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   Vetur插件  => 提示css/less语法
   
 第三天：
-1.解决改变element组件原有样式问题
+1.解决改变element组件原有样式问题(语法问题)
 2.nvm控制nodejs版本
