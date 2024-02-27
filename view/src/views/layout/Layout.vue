@@ -4,17 +4,20 @@
         <el-header>
           <Menu />
         </el-header>
-        <el-main>Main</el-main>
+        <el-main>
+          <Contain />
+        </el-main>
       </el-container>
     </div>
 </template>
 <script>
 import Menu from './components/menu.vue'
+import Contain from './components/contain.vue'
 
 export default {
   name: 'layout-main',
   components: {
-  //   HelloWorld
+    Contain,
     Menu
   },
   data () {

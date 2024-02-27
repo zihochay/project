@@ -42,3 +42,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 第三天：
 1.解决改变element组件原有样式问题(语法问题)
 2.nvm控制nodejs版本
+3.完成vue-router和对应组件匹配问题，嵌套路由 https://v3.router.vuejs.org/zh/guide/essentials/nested-routes.html

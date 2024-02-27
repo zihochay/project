@@ -1,14 +1,15 @@
 <template>
   <div class="menu">
     <el-menu
-      :default-active="activeIndex2"
+      :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
-      @select="handleSelect"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-menu-item index="1">
+        <router-link to="/index">我的简历</router-link>
+      </el-menu-item>
       <el-submenu index="2">
         <template slot="title">我的工作台</template>
         <el-menu-item index="2-1">选项1</el-menu-item>
@@ -27,7 +28,7 @@ export default {
   },
   data () {
     return {
-
+      activeIndex: '1'
     }
   },
   // 创建完成，访问当前this实例
@@ -44,4 +45,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+a{
+  text-decoration: none;
+}
+.router-link-active {
+  text-decoration: none;
+}
 </style>
