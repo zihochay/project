@@ -36,10 +36,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-/deep/ .main{
-  .el-header {
+.main {
+  /deep/ .el-header {
     padding: 0;
-    background: pink;
   }
 }
 </style>
