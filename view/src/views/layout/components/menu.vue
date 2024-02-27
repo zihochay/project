@@ -10,13 +10,21 @@
       <el-menu-item index="1">
         <router-link to="/index">我的简历</router-link>
       </el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-      </el-submenu>
-      <el-menu-item index="3">消息中心</el-menu-item>
+      <el-menu-item index="2">
+        <router-link to="/index">简历(详细版)</router-link>
+      </el-menu-item>
+      <el-menu-item index="3">
+        <router-link to="/index">知识星球</router-link>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <router-link to="/index">系统开发过程</router-link>
+      </el-menu-item>
+      <el-menu-item index="5">
+        <router-link to="/index">系统管理</router-link>
+      </el-menu-item>
+      <el-menu-item index="6">
+        <router-link to="/index">Love</router-link>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -45,6 +53,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+// 去掉router下划线
 a{
   text-decoration: none;
 }
