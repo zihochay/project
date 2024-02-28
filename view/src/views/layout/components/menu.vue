@@ -38,7 +38,7 @@ export default {
   },
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '/index'
     }
   },
   // 创建完成，访问当前this实例

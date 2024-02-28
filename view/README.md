@@ -44,3 +44,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 2.nvm控制nodejs版本
 3.完成vue-router和对应组件匹配问题，嵌套路由 https://v3.router.vuejs.org/zh/guide/essentials/nested-routes.html
 4.router-view 和 router-link 标签完成路由匹配和点击菜单跳转功能
+
+第四天
+1.构建我的简历模块
+2.el-menu使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转 

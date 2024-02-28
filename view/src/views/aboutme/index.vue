@@ -28,4 +28,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.about-me {
+  width: 1200px;
+  margin: 0 auto;
+  border: 1px solid pink;
+}
 </style>
