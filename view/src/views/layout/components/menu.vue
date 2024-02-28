@@ -1,29 +1,31 @@
 <template>
   <div class="menu">
+    <!-- 是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转 -->
     <el-menu
       :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
       background-color="#545c64"
       text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-menu-item index="1">
-        <router-link to="/index">我的简历</router-link>
+      active-text-color="#ffd04b"
+      router>
+      <el-menu-item index="/index">
+        我的简历
       </el-menu-item>
-      <el-menu-item index="2">
-        <router-link to="/detail">简历(详细版)</router-link>
+      <el-menu-item index="/detail">
+        简历(详细版)
       </el-menu-item>
-      <el-menu-item index="3">
-        <router-link to="/index">知识星球</router-link>
+      <el-menu-item index="/index1">
+        知识星球
       </el-menu-item>
-      <el-menu-item index="4">
-        <router-link to="/index">系统开发过程</router-link>
+      <el-menu-item index="/index2">
+        系统开发过程
       </el-menu-item>
-      <el-menu-item index="5">
-        <router-link to="/index">系统管理</router-link>
+      <el-menu-item index="/index3">
+        系统管理
       </el-menu-item>
-      <el-menu-item index="6">
-        <router-link to="/index">Love</router-link>
+      <el-menu-item index="/index4">
+        Love
       </el-menu-item>
     </el-menu>
   </div>
