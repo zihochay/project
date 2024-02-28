@@ -11,7 +11,7 @@
         <router-link to="/index">我的简历</router-link>
       </el-menu-item>
       <el-menu-item index="2">
-        <router-link to="/index">简历(详细版)</router-link>
+        <router-link to="/detail">简历(详细版)</router-link>
       </el-menu-item>
       <el-menu-item index="3">
         <router-link to="/index">知识星球</router-link>

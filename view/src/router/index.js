@@ -12,17 +12,21 @@ const routes = [
     children: [
       {
         path: '/index',
-        component: () => import('@/views/AboutView.vue')
+        component: () => import('@/views/aboutme/index.vue')
+      },
+      {
+        path: '/detail',
+        component: () => import('@/views/aboutme/detail.vue')
       }
     ]
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/justIndex',
+    component: () => import('@/views/aboutme/index.vue')
+  },
+  {
+    path: '/justdetail',
+    component: () => import('@/views/aboutme/detail.vue')
   },
   // 重定向到首页
   {
