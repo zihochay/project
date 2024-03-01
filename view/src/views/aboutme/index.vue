@@ -9,23 +9,32 @@
           <span class="tel"><i class="el-icon-message"></i> 772393327@qq.com</span>
         </div>
         <div class="info-first">
-          <span>工作经验：{{ workYears }}</span> ｜
+          <span>工作经验：{{ dateToYearMonth ('2020-07-01')  }}</span> ｜
           <span>求职意向：前端开发工程师</span> ｜
           <span>期望薪资：16-20K</span>
         </div>
       </div>
       <div class="school">
         <div class="logo">
-          <img style="margin-left: -45px; margin-top: -4px" src="../../assets/school.jpg" height="126" alt="">
+          <img style="margin-left: -34px; margin-top: -1px" src="../../assets/school.jpg" height="100" alt="">
         </div>
         <div class="school-text">
-          <div class="school-name">华南农业大学</div>
+          <div class="school-name">
+            <div>华南农业大学</div>
+            <div>2016-2020</div>
+          </div>
+          <div class="pro-name">
+            <div>软件工程</div>
+            <div>本科</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { dateToYearMonth } from '@/utils/index.js'
+
 export default {
   name: 'text-main',
   components: {
@@ -44,7 +53,9 @@ export default {
   mounted () {
   },
   methods: {
-
+    dateToYearMonth (date) {
+      return dateToYearMonth(date)
+    }
   }
 }
 </script>
@@ -85,26 +96,40 @@ export default {
       display: flex;
       justify-content: space-between;
       .logo {
-        width: 120px;
-        height: 120px;
+        width: 98px;
+        height: 98px;
         // border: 1px solid black;
         // background-color: black;
         border-radius: 50%;
-        margin-top: 30px;
+        margin-top: 50px;
         overflow: hidden;
         // background-image: url("../../assets/school.jpg");
         // background-repeat: no-repeat;
         // background-size: contain;
       }
       .school-text {
-        width: 270px;
+        width: 288px;
         height: 100%;
-        border: 1px solid black;
+        // border: 1px solid black;
         .school-name {
-          margin-top: 50px;
+          margin-top: 60px;
           width: 200px;
-          height: 40px;
+          line-height: 36px;
+          height: 36px;
           background-color:#e3f0ef;
+          display: flex;
+          justify-content: space-between;
+          padding: 0 10px;
+        }
+        .pro-name {
+          margin-top: 10px;
+          width: 200px;
+          line-height: 30px;
+          height: 30px;
+          background-color:#e3f0ef;
+          display: flex;
+          justify-content: space-between;
+          padding: 0 10px;
         }
       }
     }
