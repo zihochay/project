@@ -48,3 +48,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 第四天
 1.构建我的简历模块
 2.el-menu使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转 
+
+第五天
+1.完成我的简历个人信息基本内容
