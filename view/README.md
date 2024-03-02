@@ -56,3 +56,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 第六天
 1.完成简历大标题组件开发
 2.完成简历工作经历部分开发
+3.完成个人简历全部内容开发
