@@ -41,7 +41,7 @@
     </div>
     <myTitleVue title="工作经历"/>
     <div class="br-left">
-      <myCommonyVue name="中邮消费金融有限公司" post="前端开发工程师" time="2020年7月-至今"/>
+      <myCommonyVue name="中邮消费金融有限公司" post="前端开发工程师" time="2020年7月 - 至今"/>
       <div class="mr-btm5">
         1、主导完成前端审批流中心项目 PC端 和 H5端
         从零到一的建设，将泛微OA和线下审批将近 300
@@ -57,10 +57,19 @@
         在负责的前端项目中落地执行 Jenkins 自动化打包构建部署，并在团队内进行推广，提高开发效率。
       </div>
       <br />
-      <myCommonyVue name="绿米联创科技有限公司" post="前端开发工程师(实习)" time="2019年11月-2020年4月"/>
+      <myCommonyVue name="绿米联创科技有限公司" post="前端开发工程师(实习)" time="2019年11月 - 2020年4月"/>
       <div>1、主导负责绿米联创国内外官网相关工作内容，并高度还原UI设计稿样式</div>
       <div>2、参与关于新零售服务商工具微信小程序以及嵌入APP的H5页面开发</div>
       <div>3、参与官网社区后台管理系统和绿米APP后台管理系统开发，保证需求按期交付和稳定运行</div>
+    </div>
+    <myTitleVue title="项目经历"/>
+    <div class="br-left">
+      <myCommonyVue name="审批流中心" post="前端(主导开发)" time="2020年7月 - 至今"/>
+    </div>
+    <myTitleVue title="资格证书"/>
+    <div class="br-left flex">
+      <div>大学英语四级</div>
+      <div class="mr-left60">软件设计师(软考中级)</div>
     </div>
   </div>
 </template>
@@ -173,7 +182,7 @@ export default {
   .br-left {
     // height: 200px;
     margin-left: 41px;
-    padding-top: 24px;
+    padding-top: 16px;
     padding-left: 30px;
     line-height: 28px;
     border-left: 1px solid #c0ead8;
@@ -181,5 +190,11 @@ export default {
   .mr-btm5 {
     margin-bottom: 5px;
   }
+}
+.flex {
+  display: flex;
+}
+.mr-left60 {
+  margin-left: 60px;
 }
 </style>

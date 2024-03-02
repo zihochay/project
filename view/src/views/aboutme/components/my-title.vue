@@ -34,7 +34,7 @@ export default {
 
 <style lang="less" scoped>
 .title {
-  margin-top: 30px;
+  margin-top: 36px;
   margin-left: 40px;
   padding-left: 30px;
   height: 28px;
