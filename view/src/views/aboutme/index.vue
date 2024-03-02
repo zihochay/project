@@ -5,7 +5,7 @@
         <div class="name">陈志浩</div>
         <div class="info-first">
           男 ｜ 生日：1997.06 ｜ 广州/佛山
-          <span class="tel"><i class="el-icon-phone"></i>15813322857</span>
+          <span class="tel"><i class="el-icon-phone"></i>15813322857(微信)</span>
           <span class="tel"><i class="el-icon-message"></i> 772393327@qq.com</span>
         </div>
         <div class="info-first">
@@ -110,7 +110,7 @@ export default {
   height: 1800px;
   padding-right: 60px;
   margin: 0 auto;
-  border: 1px solid pink;
+  // border: 1px solid pink;
   .top {
     width: 1200px;
     height: 180px;

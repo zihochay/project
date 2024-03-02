@@ -59,6 +59,6 @@ export default {
   justify-content: space-between;
 }
 .mg-bottom {
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 </style>
