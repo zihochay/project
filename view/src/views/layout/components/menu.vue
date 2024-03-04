@@ -18,13 +18,13 @@
       <el-menu-item index="/index1">
         知识星球
       </el-menu-item>
-      <el-menu-item index="/index2">
+      <el-menu-item index="/devDetail">
         系统开发过程
       </el-menu-item>
       <el-menu-item index="/index3">
         系统管理
       </el-menu-item>
-      <el-menu-item index="/index4">
+      <el-menu-item index="/love">
         Love
       </el-menu-item>
     </el-menu>

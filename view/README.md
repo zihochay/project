@@ -57,3 +57,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 1.完成简历大标题组件开发
 2.完成简历工作经历部分开发
 3.完成个人简历全部内容开发
+
+第七天
+1.增加系统开发过程页面(后期优化可填写可修改)
