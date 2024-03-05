@@ -2,7 +2,7 @@
   <div class="develop">
     <div class="dev-action">
       <el-switch
-        width="50"
+        :width="50"
         style="margin-bottom: 40px"
         v-model="reverse"
         active-text="倒序"
