@@ -59,6 +59,9 @@ export default {
       }, {
         content: '1.增加系统开发过程页面(后期优化可填写 最新日期可修改)\n2.增加系统开发过程和love菜单路由(后期页面要有轮播图)',
         timestamp: '2023-03-04'
+      }, {
+        content: '1.增加vue-axios\n2.完成接口代理操作',
+        timestamp: '2023-03-05'
       }],
       reverse: true
     }
