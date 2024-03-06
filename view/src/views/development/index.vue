@@ -63,6 +63,9 @@ export default {
       }, {
         content: '1.增加vue-axios\n2.完成接口代理操作',
         timestamp: '2023-03-05'
+      }, {
+        content: '1.封装完接口\n2.完成get和post请求本地服务操作',
+        timestamp: '2023-03-06'
       }],
       reverse: true
     }
