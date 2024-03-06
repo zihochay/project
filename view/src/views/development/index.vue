@@ -31,6 +31,7 @@
   </div>
 </template>
 <script>
+import { queryblogs } from '@/api/common'
 export default {
   name: 'develop-detail',
   components: {
@@ -40,7 +41,7 @@ export default {
     return {
       activities: [{
         content: '1.使用vue-cli初始化vue2.0项目 https://juejin.cn/post/7228583367050018872?searchId=2024022620504011306912A3D1577ABA5B\n2.引入elementUI组件库(引入方法参考官方文档)\n3.上传到github',
-        timestamp: '2023-02-28'
+        timestamp: '2023-02-27'
       }, {
         content: '1.安装热加载功能 \n  yarn add webpack-dev-server --dev \n2.配置vue.config.js\n  devServer: {\n    hot: true, // 开启热更新\n    port: 8080 // 设置端口号\n  }\n3.Eslint插件 => 提示代码中ESLint语法错误\n  Vetur插件  => 提示css/less语法',
         timestamp: '2023-02-28'
@@ -72,8 +73,13 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
+    this.queryblogs()
   },
   methods: {
+    async queryblogs () {
+      const res = await queryblogs({ temp: 1222 })
+      console.log('res >>', res)
+    },
     // 随机生成颜色函数
     getColor () {
       return '#' + Math.floor(Math.random() * 256).toString(10)
