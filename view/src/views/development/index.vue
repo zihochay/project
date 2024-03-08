@@ -66,6 +66,9 @@ export default {
       }, {
         content: '1.封装完接口\n2.完成get和post请求本地服务操作',
         timestamp: '2023-03-06'
+      }, {
+        content: '1.修复路由地址输入/重定向失败问题',
+        timestamp: '2023-03-07'
       }],
       reverse: true
     }
