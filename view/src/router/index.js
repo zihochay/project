@@ -5,6 +5,11 @@ import Layout from '../views/layout/Layout.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  // 重定向到首页
+  {
+    path: '/',
+    redirect: '/index'
+  },
   {
     path: '/',
     name: 'index',
@@ -35,12 +40,8 @@ const routes = [
   {
     path: '/justdetail',
     component: () => import('@/views/aboutme/detail.vue')
-  },
-  // 重定向到首页
-  {
-    path: '/',
-    redirect: '/index'
   }
+
 ]
 
 const router = new VueRouter({
