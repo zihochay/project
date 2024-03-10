@@ -12,6 +12,8 @@ const responseFormatter = require('./middleware/response_formatter');
 const { apiPrefix } = require('./config/index');
 const routers = require('./routers/index');
 
+require('./dbhelper/db');
+
 // koa的错误处理程序hack
 onerror(app);
 
