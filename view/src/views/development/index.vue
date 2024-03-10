@@ -69,6 +69,12 @@ export default {
       }, {
         content: '1.修复路由地址输入/重定向失败问题',
         timestamp: '2023-03-07'
+      }, {
+        content: '1.购买腾讯云服务器\n2.配置服务器线上数据库',
+        timestamp: '2023-03-8'
+      }, {
+        content: '1.本地nodejs代码连接服务器数据库',
+        timestamp: '2023-03-10'
       }],
       reverse: true
     }
