@@ -1,5 +1,6 @@
 <template>
-  <div class="flex mg-bottom">
+  <div class="flex mg-bottom title-box">
+    <img v-if="imgSrc" :src="imgSrc" height="40" alt="logo" class="logo">
     <div class="comp-name">{{ name }}</div>
     <div class="flex post-time">
       <div>{{ post }}</div>
@@ -11,6 +12,10 @@
 export default {
   name: 'my-title',
   props: {
+    imgSrc: {
+      type: String,
+      default: ''
+    },
     name: {
       type: String,
       default: '公司名称'
@@ -45,6 +50,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.title-box {
+  height: 40px;
+  line-height: 40px;
+}
 .flex {
   display: flex;
 }
@@ -60,5 +69,9 @@ export default {
 }
 .mg-bottom {
   margin-bottom: 6px;
+}
+.logo {
+  margin-right: 14px;
+  border-radius: 4px;
 }
 </style>

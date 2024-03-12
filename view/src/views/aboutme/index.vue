@@ -41,7 +41,8 @@
     </div>
     <myTitleVue title="工作经历"/>
     <div class="br-left">
-      <myCommonyVue name="中邮消费金融有限公司" post="前端开发工程师" time="2020年7月 - 至今"/>
+      <!-- 写个文章说明img src 组件传参需要 require -->
+      <myCommonyVue :imgSrc="require('../../assets/zy-logo.png')" name="中邮消费金融有限公司" post="前端开发工程师" time="2020年7月 - 至今"/>
       <div class="mr-btm5">
         1、主导完成前端审批流中心项目 PC端 和 H5端
         从零到一的建设，将泛微OA和线下审批将近 300
@@ -57,7 +58,7 @@
         在负责的前端项目中落地执行 Jenkins 自动化打包构建部署，并在团队内进行推广，提高开发效率。
       </div>
       <br />
-      <myCommonyVue name="绿米联创科技有限公司" post="前端开发工程师(实习)" time="2019年11月 - 2020年4月"/>
+      <myCommonyVue :imgSrc="require('../../assets/lm-logo.png')" name="绿米联创科技有限公司" post="前端开发工程师(实习)" time="2019年11月 - 2020年4月"/>
       <div>1、主导负责绿米联创国内外官网相关工作内容，并高度还原UI设计稿样式</div>
       <div>2、参与关于新零售服务商工具微信小程序以及嵌入 APP 的 H5 页面开发，保证需求按期交付和稳定运行</div>
       <div>3、参与官网社区后台管理系统和绿米 APP 后台管理系统开发，实现可配置化 APP 开屏广告、首页轮播图、节假日活动等等</div>

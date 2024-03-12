@@ -28,6 +28,10 @@ const routes = [
         component: () => import('@/views/development/index.vue')
       },
       {
+        path: '/blogType',
+        component: () => import('@/views/system/blogType.vue')
+      },
+      {
         path: '/love',
         component: () => import('@/views/love/love.vue')
       }

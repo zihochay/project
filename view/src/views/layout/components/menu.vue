@@ -21,11 +21,12 @@
       <el-menu-item index="/devDetail">
         系统开发过程
       </el-menu-item>
-      <el-menu-item index="/index3">
-        系统管理
-      </el-menu-item>
+      <el-submenu index="/systemManage">
+        <template slot="title">系统管理</template>
+        <el-menu-item index="/blogType">文章分类管理</el-menu-item>
+      </el-submenu>
       <el-menu-item index="/love">
-        Love
+        test
       </el-menu-item>
     </el-menu>
   </div>
