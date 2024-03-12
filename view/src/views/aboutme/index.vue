@@ -4,7 +4,7 @@
       <div class="info">
         <div class="name">陈志浩</div>
         <div class="info-first">
-          男 ｜ 生日：1997.06 ｜ 广州/佛山
+          男 ｜ 生日：1997.06 ｜ <i class="el-icon-location-information"></i>广州/佛山
           <span class="tel"><i class="el-icon-phone"></i>15813322857(微信)</span>
           <span class="tel"><i class="el-icon-message"></i> 772393327@qq.com</span>
         </div>
