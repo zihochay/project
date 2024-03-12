@@ -75,6 +75,9 @@ export default {
       }, {
         content: '1.本地nodejs代码连接服务器数据库',
         timestamp: '2023-03-10'
+      }, {
+        content: '1.完成文章分类和文章API编写\n2.编写文章分类管理部分前端页面（50%）',
+        timestamp: '2023-03-10'
       }],
       reverse: true
     }

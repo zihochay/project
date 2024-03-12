@@ -29,7 +29,7 @@ const routes = [
       },
       {
         path: '/blogType',
-        component: () => import('@/views/system/blogType.vue')
+        component: () => import('@/views/system/blogType/blogType.vue')
       },
       {
         path: '/love',

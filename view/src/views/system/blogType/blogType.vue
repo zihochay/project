@@ -29,21 +29,26 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="error_tips"> 666666 </div>
+    <div class="modal">
+      <addOrEditVue :dialogFormVisible="dialogFormVisible"/>
+    </div>
   </div>
 </template>
 <script>
+import addOrEditVue from './addOrEdit.vue'
+
 export default {
   name: 'blog-type',
   components: {
-  //   HelloWorld
+    addOrEditVue
   },
   data () {
     return {
       formInline: {
         name: ''
       },
-      tableData: []
+      tableData: [],
+      dialogFormVisible: false
     }
   },
   // 创建完成，访问当前this实例
@@ -63,7 +68,8 @@ export default {
       console.log('formInline >>', this.formInline)
     },
     onAdd () {
-      console.log('adddd')
+      // console.log('adddd')
+      this.dialogFormVisible = true
     }
   }
 }
