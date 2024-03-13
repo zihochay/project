@@ -27,6 +27,14 @@
           prop="value"
           label="分类值">
         </el-table-column>
+        <el-table-column
+          prop="createdAt"
+          label="创建时间">
+        </el-table-column>
+        <el-table-column
+          prop="updatedAt"
+          label="修改时间">
+        </el-table-column>
       </el-table>
     </div>
     <div class="modal">
