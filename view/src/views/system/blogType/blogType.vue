@@ -4,7 +4,7 @@
       <el-form ref="formRef" size="small" :inline="true" :model="formInline" class="demo-form-inline">
         <!-- 增加prop清除表单内容才能生效 -->
         <el-form-item label="分类名称" prop="name">
-          <el-input clearable="" v-model="formInline.name" placeholder="分类名称"></el-input>
+          <el-input clearable v-model="formInline.name" placeholder="分类名称"></el-input>
         </el-form-item>
       </el-form>
       <div>
@@ -16,26 +16,27 @@
     <div class="table-box">
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column
+          prop="rank"
+          label="排序">
+        </el-table-column>
+        <el-table-column
           prop="name"
           label="分类名称">
         </el-table-column>
         <el-table-column
-          prop="province"
-          label="省份">
-        </el-table-column>
-        <el-table-column
-          prop="city"
-          label="市区">
+          prop="value"
+          label="分类值">
         </el-table-column>
       </el-table>
     </div>
     <div class="modal">
-      <addOrEditVue :dialogFormVisible="dialogFormVisible"/>
+      <addOrEditVue :type="openType" :dialogFormVisible="dialogFormVisible" @close="onClose" @sure="onSure"/>
     </div>
   </div>
 </template>
 <script>
 import addOrEditVue from './addOrEdit.vue'
+import { getCategory, addCategory } from '@/api/category'
 
 export default {
   name: 'blog-type',
@@ -48,7 +49,8 @@ export default {
         name: ''
       },
       tableData: [],
-      dialogFormVisible: false
+      dialogFormVisible: false,
+      openType: 'add'
     }
   },
   // 创建完成，访问当前this实例
@@ -57,8 +59,22 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
+    this.getList()
   },
   methods: {
+    async getList () {
+      const resList = await getCategory()
+      this.tableData = resList.result
+      console.log('res >>', resList)
+    },
+    async onSure (value) {
+      console.log('value >>>', value)
+      const res = await addCategory(value)
+      console.log('res >>', res)
+    },
+    onClose () {
+      this.dialogFormVisible = false
+    },
     onQuery () {
       console.log('formInline >>', this.formInline)
     },

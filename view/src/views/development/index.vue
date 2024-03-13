@@ -77,7 +77,10 @@ export default {
         timestamp: '2023-03-10'
       }, {
         content: '1.完成文章分类和文章API编写\n2.编写文章分类管理部分前端页面（50%）',
-        timestamp: '2023-03-10'
+        timestamp: '2023-03-11'
+      }, {
+        content: '1.使用mongoDB compass成功操作到数据库\n2.编写文章分类管理部分前端页面（100%）\n3.完成文章分类部分接口联调（30%）',
+        timestamp: '2023-03-13'
       }],
       reverse: true
     }

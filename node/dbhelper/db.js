@@ -14,7 +14,7 @@ console.log('databaseUrl >>', databaseUrl)
  */
 
 mongoose.connect(databaseUrl, {
-  authSource: 'admin'
+  // authSource: 'admin'
   // useUnifiedTopology: true,
   // useNewUrlParser: true,
   // useFindAndModify: false,
