@@ -1,7 +1,7 @@
 // models/category.js
 
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const schema = new mongoose.Schema({
