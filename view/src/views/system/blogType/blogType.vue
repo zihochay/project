@@ -30,10 +30,16 @@
         <el-table-column
           prop="createdAt"
           label="创建时间">
+          <template slot-scope="scope">
+            <span>{{parseTime(scope.row.createdAt)}}</span>
+          </template>
         </el-table-column>
         <el-table-column
           prop="updatedAt"
           label="修改时间">
+          <template slot-scope="scope">
+            <span>{{parseTime(scope.row.updatedAt)}}</span>
+          </template>
         </el-table-column>
       </el-table>
     </div>
@@ -45,6 +51,7 @@
 <script>
 import addOrEditVue from './addOrEdit.vue'
 import { getCategory, addCategory } from '@/api/category'
+import { parseTime } from '@/utils/index'
 
 export default {
   name: 'blog-type',
@@ -94,6 +101,9 @@ export default {
     onAdd () {
       // console.log('adddd')
       this.dialogFormVisible = true
+    },
+    parseTime (str) {
+      return parseTime(str)
     }
   }
 }

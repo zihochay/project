@@ -81,6 +81,9 @@ export default {
       }, {
         content: '1.使用mongoDB compass成功操作到数据库\n2.编写文章分类管理部分前端页面（100%）\n3.完成文章分类部分接口联调（30%）',
         timestamp: '2023-03-13'
+      }, {
+        content: '1.增加时间转换格式函数\n',
+        timestamp: '2023-03-14'
       }],
       reverse: true
     }
