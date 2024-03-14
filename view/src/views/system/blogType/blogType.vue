@@ -41,16 +41,32 @@
             <span>{{parseTime(scope.row.updatedAt)}}</span>
           </template>
         </el-table-column>
+        <el-table-column label="操作" width="100">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="text"
+              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-divider direction="vertical"></el-divider>
+            <el-popconfirm
+              size="mini"
+              title="确定要删除该分类吗？"
+              @confirm="handleDel(scope.$index, scope.row)"
+            >
+              <el-button size="mini" type="text" slot="reference">删除</el-button>
+            </el-popconfirm>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
-    <div class="modal">
-      <addOrEditVue :type="openType" :dialogFormVisible="dialogFormVisible" @close="onClose" @sure="onSure"/>
+    <div class="modal" v-if="dialogFormVisible">
+      <addOrEditVue :type="openType" :id="currentId" :dialogFormVisible="dialogFormVisible" @close="onClose" @sure="onSure"/>
     </div>
   </div>
 </template>
 <script>
 import addOrEditVue from './addOrEdit.vue'
-import { getCategory, addCategory } from '@/api/category'
+import { getCategory, addCategory, UpdateCategory, delCategory } from '@/api/category'
 import { parseTime } from '@/utils/index'
 
 export default {
@@ -65,7 +81,8 @@ export default {
       },
       tableData: [],
       dialogFormVisible: false,
-      openType: 'add'
+      openType: 'add',
+      currentId: ''
     }
   },
   // 创建完成，访问当前this实例
@@ -77,29 +94,53 @@ export default {
     this.getList()
   },
   methods: {
-    async getList () {
-      const resList = await getCategory()
+    handleEdit (index, row) {
+      this.openType = 'edit'
+      this.dialogFormVisible = true
+      this.currentId = row._id
+    },
+    async handleDel (index, row) {
+      const res = await delCategory(row._id)
+      if (res.code === 'success') {
+        this.$validateMessage('删除成功', 'success')
+        this.getList()
+      }
+    },
+    async getList (data = {}) {
+      const resList = await getCategory(data)
       this.tableData = resList.result
-      console.log('res >>', resList)
     },
     async onSure (value) {
-      console.log('value >>>', value)
-      const res = await addCategory(value)
-      console.log('res >>', res)
+      if (value._id) {
+        const res = await UpdateCategory(value._id, value)
+        if (res.code === 'success') {
+          this.$validateMessage('修改成功', 'success')
+          this.onClose()
+          this.getList()
+        }
+      } else {
+        const res = await addCategory(value)
+        if (res.code === 'success') {
+          this.$validateMessage('新增成功', 'success')
+          this.onClose()
+          this.getList()
+        }
+      }
     },
     onClose () {
       this.dialogFormVisible = false
     },
     onQuery () {
       console.log('formInline >>', this.formInline)
+      this.getList(this.formInline)
     },
     onReset () {
-      console.log('ssss')
       this.$refs.formRef.resetFields()
-      console.log('formInline >>', this.formInline)
     },
     onAdd () {
       // console.log('adddd')
+      this.openType = 'add'
+      this.currentId = ''
       this.dialogFormVisible = true
     },
     parseTime (str) {

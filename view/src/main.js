@@ -9,6 +9,14 @@ import '@/styles/index.less'
 Vue.use(Element)
 Vue.config.productionTip = false
 
+Vue.prototype.$validateMessage = function (message, type = 'warning') {
+  this.$notify({
+    message,
+    position: 'top-right',
+    type
+  })
+}
+
 new Vue({
   router,
   store,

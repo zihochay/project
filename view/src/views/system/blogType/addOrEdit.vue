@@ -21,6 +21,8 @@
   </div>
 </template>
 <script>
+import { getCategoryById } from '@/api/category'
+
 export default {
   name: 'text-main',
   props: {
@@ -31,6 +33,10 @@ export default {
     type: {
       type: String,
       default: 'add'
+    },
+    id: {
+      type: String,
+      default: ''
     }
   },
   components: {
@@ -65,8 +71,17 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
+    console.log('id >>', this.id)
+    if (this.id) {
+      this.getFormData()
+    }
   },
   methods: {
+    async getFormData () {
+      const resData = await getCategoryById(this.id)
+      console.log('resData >>', resData)
+      this.form = resData.result
+    },
     onCancel () {
       // console.log('45456')
       this.$refs.editForm.resetFields()

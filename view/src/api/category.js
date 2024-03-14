@@ -14,3 +14,25 @@ export function getCategory () {
     method: 'get'
   })
 }
+
+export function getCategoryById (id) {
+  return request({
+    url: `/api/categories/${id}`,
+    method: 'get'
+  })
+}
+
+export function UpdateCategory (id, data) {
+  return request({
+    url: `/api/categories/${id}`,
+    method: 'put',
+    data
+  })
+}
+
+export function delCategory (id) {
+  return request({
+    url: `/api/categories/${id}`,
+    method: 'delete'
+  })
+}
