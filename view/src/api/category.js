@@ -37,3 +37,10 @@ export function delCategory (id) {
     method: 'delete'
   })
 }
+
+export function getCategoryAll () {
+  return request({
+    url: '/api/categories/findAll',
+    method: 'get'
+  })
+}

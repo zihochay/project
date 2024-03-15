@@ -24,7 +24,7 @@
 import { getCategoryById } from '@/api/category'
 
 export default {
-  name: 'text-main',
+  name: 'add-edit',
   props: {
     dialogFormVisible: {
       type: Boolean,
@@ -79,7 +79,7 @@ export default {
   methods: {
     async getFormData () {
       const resData = await getCategoryById(this.id)
-      console.log('resData >>', resData)
+      // console.log('resData >>', resData)
       this.form = resData.result
     },
     onCancel () {

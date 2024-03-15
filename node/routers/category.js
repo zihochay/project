@@ -6,6 +6,9 @@ const controller = require('../controllers/category');
 // 查
 router.get('/', controller.find);
 
+// 查
+router.get('/findAll', controller.findAll);
+
 // 查 动态路由
 router.get('/:id', controller.detail);
 

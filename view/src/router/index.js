@@ -32,6 +32,10 @@ const routes = [
         component: () => import('@/views/system/blogType/blogType.vue')
       },
       {
+        path: '/knowledge',
+        component: () => import('@/views/knowledge/index.vue')
+      },
+      {
         path: '/love',
         component: () => import('@/views/love/love.vue')
       }

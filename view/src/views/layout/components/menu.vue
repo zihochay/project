@@ -15,7 +15,7 @@
       <el-menu-item index="/detail">
         简历(详细版)
       </el-menu-item>
-      <el-menu-item index="/index1">
+      <el-menu-item index="/knowledge">
         知识星球
       </el-menu-item>
       <el-menu-item index="/devDetail">

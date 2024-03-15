@@ -34,6 +34,21 @@ exports.find = async (ctx) => {
   });
 };
 
+
+exports.findAll = async (ctx) => {
+  let result;
+  result = dbHelper.findAll();
+  await result.then((res) => {
+  if (res) {
+      ctx.body = res;
+    } else {
+      throw new ApiError(ApiErrorNames.UNEXIST_ID);
+    }
+  }).catch((err) => {
+    throw new ApiError(err.name, err.message);
+  });
+};
+
 /**
  * 查 动态路由 id
  */
