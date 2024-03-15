@@ -18,7 +18,14 @@ exports.findSome = (data) => {
   const {
     page = 1, limit = 10, sort = 'rank',
   } = data;
-  const query = {};
+  // 去掉对象中为空的属性
+  const query = Object.fromEntries(
+    Object.entries(data).filter(([, value]) => value !== '')
+  );
+  delete query.page
+  delete query.limit
+  delete query.sort
+  // const query = data;
   const options = {
     page: parseInt(page, 10),
     limit: parseInt(limit, 10),

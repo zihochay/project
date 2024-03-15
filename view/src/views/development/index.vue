@@ -84,6 +84,9 @@ export default {
       }, {
         content: '1.增加时间转换格式函数\n',
         timestamp: '2023-03-14'
+      }, {
+        content: '1.修复monogoDB分页插件查询失败的问题v2\n2.完成文章分类增删查改功能（100%）',
+        timestamp: '2023-03-14'
       }],
       reverse: true
     }

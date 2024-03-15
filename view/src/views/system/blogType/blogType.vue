@@ -59,6 +59,17 @@
         </el-table-column>
       </el-table>
     </div>
+    <div class="page-box">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="page"
+        :page-sizes="[10, 20, 50, 100]"
+        :page-size="limit"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
+    </div>
     <div class="modal" v-if="dialogFormVisible">
       <addOrEditVue :type="openType" :id="currentId" :dialogFormVisible="dialogFormVisible" @close="onClose" @sure="onSure"/>
     </div>
@@ -82,7 +93,10 @@ export default {
       tableData: [],
       dialogFormVisible: false,
       openType: 'add',
-      currentId: ''
+      currentId: '',
+      page: 1,
+      total: 0,
+      limit: 10
     }
   },
   // 创建完成，访问当前this实例
@@ -94,6 +108,15 @@ export default {
     this.getList()
   },
   methods: {
+    handleSizeChange (val) {
+      this.limit = val
+      this.getList()
+    },
+    handleCurrentChange (val) {
+      // console.log(val)
+      this.page = val
+      this.getList()
+    },
     handleEdit (index, row) {
       this.openType = 'edit'
       this.dialogFormVisible = true
@@ -106,9 +129,12 @@ export default {
         this.getList()
       }
     },
-    async getList (data = {}) {
-      const resList = await getCategory(data)
-      this.tableData = resList.result
+    async getList (data = this.formInline) {
+      const { page, limit } = this
+      const resList = await getCategory({ page, limit, ...data })
+      const { result } = resList
+      this.tableData = result.docs
+      this.total = result.totalDocs
     },
     async onSure (value) {
       if (value._id) {
@@ -131,11 +157,14 @@ export default {
       this.dialogFormVisible = false
     },
     onQuery () {
-      console.log('formInline >>', this.formInline)
+      // console.log('formInline >>', this.formInline)
       this.getList(this.formInline)
     },
     onReset () {
+      this.page = 1
+      this.limit = 10
       this.$refs.formRef.resetFields()
+      this.getList(this.formInline)
     },
     onAdd () {
       // console.log('adddd')
@@ -157,10 +186,9 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-  // /deep/ .el-table th{
-  //   color: #7F8C9F;
-  //   font-weight: normal;
-  //   background: #eef3f9;
-  // }
+  .page-box {
+    margin-top: 20px;
+    float: right;
+  }
 }
 </style>

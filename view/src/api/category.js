@@ -1,4 +1,5 @@
 import request from '@/utils/request.js'
+import Qs from 'qs'
 
 export function addCategory (data) {
   return request({
@@ -8,9 +9,9 @@ export function addCategory (data) {
   })
 }
 
-export function getCategory () {
+export function getCategory (data) {
   return request({
-    url: '/api/categories',
+    url: `/api/categories?${Qs.stringify(data)}`,
     method: 'get'
   })
 }
