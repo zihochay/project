@@ -9,6 +9,8 @@
         inactive-text="正序">
       </el-switch>
     </div>
+    <quill-editor v-model="content" :options="editorOption">
+    </quill-editor>
     <el-timeline :reverse="reverse">
       <el-timeline-item
         placement="top"
@@ -39,6 +41,10 @@ export default {
   },
   data () {
     return {
+      content: '',
+      editorOption: {
+        // placeholder: '请在这里输入'
+      },
       activities: [{
         content: '1.使用vue-cli初始化vue2.0项目 https://juejin.cn/post/7228583367050018872?searchId=2024022620504011306912A3D1577ABA5B\n2.引入elementUI组件库(引入方法参考官方文档)\n3.上传到github',
         timestamp: '2023-02-27'
@@ -86,7 +92,10 @@ export default {
         timestamp: '2023-03-14'
       }, {
         content: '1.修复monogoDB分页插件查询失败的问题v2\n2.完成文章分类增删查改功能（100%）',
-        timestamp: '2023-03-14'
+        timestamp: '2023-03-15'
+      }, {
+        content: '1.完成Vue+node部署到腾讯云服务器上，实现系统线上可访问功能（100%）\n2.增加富文本编辑器',
+        timestamp: '2023-03-18'
       }],
       reverse: true
     }
@@ -97,7 +106,7 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
-    this.queryblogs()
+    // this.queryblogs()
   },
   methods: {
     async queryblogs () {

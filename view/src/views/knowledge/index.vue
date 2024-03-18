@@ -3,7 +3,9 @@
     <div class="top">
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="item in typeList" :key="item.value" :label="item.name" :name="item.value">
-          <div class="list">123123123</div>
+          <div class="list">
+            66666
+          </div>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -50,7 +52,6 @@ export default {
   .list {
     border: 1px solid red;
     width: 100%;
-    height: 83vh;
   }
 }
 </style>
