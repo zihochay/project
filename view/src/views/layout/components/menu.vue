@@ -26,7 +26,7 @@
         <el-menu-item index="/blogType">文章分类管理</el-menu-item>
       </el-submenu>
       <el-menu-item index="/love">
-        test
+        LOVE
       </el-menu-item>
     </el-menu>
   </div>
