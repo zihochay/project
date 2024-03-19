@@ -7,13 +7,22 @@
         <div class="love-name">蓝月茵</div>
         <div class="love-tips">幸好，一直是你</div>
         <div class="love-times">
-
+          <div class="long-time">
+            <div>在一起</div>
+            <div class="love-num">{{ dateToDays('2022-11-12') }}</div>
+          </div>
+          <div class="birth-time">
+            <div>离小蓝生日</div>
+            <div class="love-num">{{ dateUntilBirthday(7, 27) }}</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { dateToDays, dateUntilBirthday } from '@/utils/index'
+
 export default {
   name: 'love-story',
   components: {
@@ -32,7 +41,12 @@ export default {
   mounted () {
   },
   methods: {
-
+    dateToDays (date) {
+      return dateToDays(date)
+    },
+    dateUntilBirthday (month, day) {
+      return dateUntilBirthday(month, day)
+    }
   }
 }
 </script>
@@ -54,17 +68,35 @@ export default {
   border: 1px solid black;
   .right-top {
     width: 100%;
-    height: 300px;
+    // height: 300px;
     border-radius: 5px;
-    border: 1px solid black;
+    padding-bottom: 8px;
+    // border: 1px solid black;
+    box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
     .love-name {
+      margin-top: 5px;
       color: #0b73ea;
     }
     .love-tips {
+      margin-top: 4px;
       font-size: 12px;
     }
     .love-times {
-      border: 1px solid pink;
+      display: flex;
+      margin-top: 14px;
+      .long-time {
+        width: 50%;
+        // border: 1px solid pink;
+      }
+      .birth-time {
+        width: 50%;
+        // border: 1px solid pink;
+      }
+    }
+    .love-num {
+      margin-top: 4px;
+      color: rgb(247, 126, 146);
+      font-weight: 600;
     }
   }
 }

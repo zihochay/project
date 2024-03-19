@@ -8,6 +8,33 @@ export function dateToYearMonth (date) {
   return `${yearsDiff}年${monthsDiff}月`
 }
 
+// 计算输入时间和当前时间差几天
+export function dateToDays (date) {
+  const currentTime = new Date()
+  const inputTime = new Date(date)
+  // 计算时间间隔（以毫秒为单位）
+  const timeDiff = currentTime.getTime() - inputTime.getTime()
+  // 将毫秒数转换为天数
+  const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24))
+  return daysDiff
+}
+
+// 计算生日倒计时(新历)
+export function dateUntilBirthday (birthdayMonth, birthdayDate) {
+  const today = new Date()
+  const currentYear = today.getFullYear()
+  const birthday = new Date(currentYear, birthdayMonth - 1, birthdayDate) // 月份从 0 开始，所以要减去 1
+
+  if (today > birthday) {
+    birthday.setFullYear(currentYear + 1) // 如果今年的生日已经过了，就取明年的生日
+  }
+
+  const diffTime = birthday.getTime() - today.getTime()
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+  return diffDays
+}
+
 // 时间转换
 export function parseTime (time, cFormat) {
   if (arguments.length === 0) {
