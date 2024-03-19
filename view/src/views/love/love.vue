@@ -17,16 +17,20 @@
           </div>
         </div>
       </div>
+      <div class="right-top" style="padding: 0">
+        <myCarouelVue />
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { dateToDays, dateUntilBirthday } from '@/utils/index'
+import myCarouelVue from './components/myCarouel.vue'
 
 export default {
   name: 'love-story',
   components: {
-  //   HelloWorld
+    myCarouelVue
   },
   data () {
     return {
@@ -54,6 +58,8 @@ export default {
 <style lang="less" scoped>
 .love {
   display: flex;
+  width: 1440px;
+  margin: 0 auto;
 }
 .love-left {
   width: 80%;
@@ -65,10 +71,12 @@ export default {
   height: 600px;
   padding: 30px 20px;
   text-align: center;
-  border: 1px solid black;
+  // border: 1px solid black;
   .right-top {
     width: 100%;
+    overflow: hidden;
     // height: 300px;
+    margin-bottom: 30px;
     border-radius: 5px;
     padding-bottom: 8px;
     // border: 1px solid black;

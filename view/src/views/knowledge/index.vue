@@ -4,7 +4,7 @@
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="item in typeList" :key="item.value" :label="item.name" :name="item.value">
           <div class="list">
-            66666
+            翻转的方式（动画），正面是问题，背面是答案
           </div>
         </el-tab-pane>
       </el-tabs>
