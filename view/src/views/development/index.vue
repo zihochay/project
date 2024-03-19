@@ -1,16 +1,28 @@
 <template>
   <div class="develop">
     <div class="dev-action">
-      <el-switch
+      <!-- <el-switch
         :width="50"
         style="margin-bottom: 40px"
         v-model="reverse"
         active-text="倒序"
         inactive-text="正序">
-      </el-switch>
+      </el-switch> -->
+      <el-alert
+        :type="type"
+        show-icon
+        :closable="false">
+        <template slot="title">
+          <!-- {{`距离 2024-2-27 第一天开发，已经过去 ${dateToDays('2024-02-27')} 天`}} -->
+          <span>距离 2024-2-27 第一天开发，已经过去</span>
+          <span class="num-style"> {{dateToDays('2024-02-27')}}</span> 天，
+          <span>实际开发天数</span>
+          <span class="num-style"> {{activities.length}}</span> 天，
+          <span>开发率(实际开发天数/总天数)：</span>
+          <span class="num-style"> {{percent}}%</span>
+        </template>
+      </el-alert>
     </div>
-    <quill-editor v-model="content" :options="editorOption">
-    </quill-editor>
     <el-timeline :reverse="reverse">
       <el-timeline-item
         placement="top"
@@ -18,22 +30,31 @@
         v-for="(activity, index) in activities"
         :key="index"
         :color="getColor()"
-        :timestamp="activity.timestamp">
-        <!-- <el-card> -->
-          <el-input
-            type="textarea"
-            autosize
-            readonly
-            v-model="activity.content"
-          >
-          </el-input>
-        <!-- </el-card> -->
+        :timestamp="activity.date">
+          <div class="content-box">
+            <!-- <el-input
+              type="textarea"
+              autosize
+              readonly
+              v-model="activity.content"
+            >
+            </el-input> -->
+            <div class="content-btn">
+              <el-button v-if="index == 0" @click="onEditorChage(index)" type="primary" size="mini" plain>保  存</el-button>
+            </div>
+            <quill-editor ref="editor" v-if="index == 0" v-model="activity.content" :options="{theme:'snow'}">
+            </quill-editor>
+            <quill-editor v-else v-model="activity.content" :disabled="true" :options="{theme:'bubble'}">
+            </quill-editor>
+          </div>
       </el-timeline-item>
     </el-timeline>
   </div>
 </template>
 <script>
-import { queryblogs } from '@/api/common'
+import { addDevelop, findAllDevelop, editDevelop } from '@/api/develop.js'
+import { dateToDays } from '@/utils/index'
+
 export default {
   name: 'develop-detail',
   components: {
@@ -45,59 +66,10 @@ export default {
       editorOption: {
         // placeholder: '请在这里输入'
       },
-      activities: [{
-        content: '1.使用vue-cli初始化vue2.0项目 https://juejin.cn/post/7228583367050018872?searchId=2024022620504011306912A3D1577ABA5B\n2.引入elementUI组件库(引入方法参考官方文档)\n3.上传到github',
-        timestamp: '2023-02-27'
-      }, {
-        content: '1.安装热加载功能 \n  yarn add webpack-dev-server --dev \n2.配置vue.config.js\n  devServer: {\n    hot: true, // 开启热更新\n    port: 8080 // 设置端口号\n  }\n3.Eslint插件 => 提示代码中ESLint语法错误\n  Vetur插件  => 提示css/less语法',
-        timestamp: '2023-02-28'
-      }, {
-        content: '1.解决改变element组件原有样式问题(语法问题)\n2.nvm控制nodejs版本\n3.完成vue-router和对应组件匹配问题，嵌套路由 https://v3.router.vuejs.org/zh/guide/essentials/nested-routes.html\n4.router-view 和 router-link 标签完成路由匹配和点击菜单跳转功能',
-        timestamp: '2023-02-29'
-      }, {
-        content: '1.构建我的简历模块\n2.el-menu使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转 ',
-        timestamp: '2023-03-01'
-      }, {
-        content: '1.完成我的简历个人信息基本内容\n2.完成简历个人优势开发',
-        timestamp: '2023-03-02'
-      }, {
-        content: '1.完成简历大标题组件开发\n2.完成简历工作经历部分开发\n3.完成个人简历全部内容开发',
-        timestamp: '2023-03-03'
-      }, {
-        content: '1.增加系统开发过程页面(后期优化可填写 最新日期可修改)\n2.增加系统开发过程和love菜单路由(后期页面要有轮播图)',
-        timestamp: '2023-03-04'
-      }, {
-        content: '1.增加vue-axios\n2.完成接口代理操作',
-        timestamp: '2023-03-05'
-      }, {
-        content: '1.封装完接口\n2.完成get和post请求本地服务操作',
-        timestamp: '2023-03-06'
-      }, {
-        content: '1.修复路由地址输入/重定向失败问题',
-        timestamp: '2023-03-07'
-      }, {
-        content: '1.购买腾讯云服务器\n2.配置服务器线上数据库',
-        timestamp: '2023-03-8'
-      }, {
-        content: '1.本地nodejs代码连接服务器数据库',
-        timestamp: '2023-03-10'
-      }, {
-        content: '1.完成文章分类和文章API编写\n2.编写文章分类管理部分前端页面（50%）',
-        timestamp: '2023-03-11'
-      }, {
-        content: '1.使用mongoDB compass成功操作到数据库\n2.编写文章分类管理部分前端页面（100%）\n3.完成文章分类部分接口联调（30%）',
-        timestamp: '2023-03-13'
-      }, {
-        content: '1.增加时间转换格式函数\n',
-        timestamp: '2023-03-14'
-      }, {
-        content: '1.修复monogoDB分页插件查询失败的问题v2\n2.完成文章分类增删查改功能（100%）',
-        timestamp: '2023-03-15'
-      }, {
-        content: '1.完成Vue+node部署到腾讯云服务器上，实现系统线上可访问功能（100%）\n2.增加富文本编辑器',
-        timestamp: '2023-03-18'
-      }],
-      reverse: true
+      activities: [],
+      reverse: false,
+      type: 'success',
+      percent: ''
     }
   },
   // 创建完成，访问当前this实例
@@ -106,12 +78,80 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
-    // this.queryblogs()
+    this.getAllList()
+    // this.$refs.editor.focus()
+    // this.$refs.editor.quill.enable(false)
   },
   methods: {
-    async queryblogs () {
-      const res = await queryblogs({ temp: 1222 })
-      console.log('res >>', res)
+    onEditorChage (index) {
+      console.log(index)
+      console.log('active >>', this.activities[index])
+      if (this.activities[index]._id) {
+        // 编辑
+        const params = {
+          ...this.activities[index],
+          id: this.activities[index]._id
+        }
+        this.editDevelop(params)
+      } else {
+        // 新增
+        this.addDevelop(this.activities[index].content, this.activities[index].date)
+      }
+      // this.getAllList()
+    },
+    async editDevelop (params) {
+      // const date = timestamp || new Date()
+      const res = await editDevelop(params)
+      // console.log('res >>', res)
+      if (res.code === 'success') {
+        this.$validateMessage('编辑成功', 'success')
+        this.getAllList()
+      }
+    },
+    async addDevelop (content, timestamp) {
+      const date = timestamp || new Date()
+      const res = await addDevelop({ content, date })
+      // console.log('res >>', res)
+      if (res.code === 'success') {
+        this.$validateMessage('新增成功', 'success')
+        this.getAllList()
+      }
+    },
+    async getAllList () {
+      const resList = await findAllDevelop()
+      this.activities = resList.result
+      // 计算开发效率
+      const total = dateToDays('2024-02-27')
+      const current = resList.result.length
+      this.percent = ((current / total) * 100).toFixed(2)
+      if (this.percent >= 60) {
+        this.type = 'success'
+      } else if (this.percent >= 40) {
+        this.type = 'warning'
+      } else {
+        this.type = 'error'
+      }
+
+      // 计算当前时间
+      const lastData = this.activities[0]
+      // console.log('lastData >>>', lastData)
+      const date = new Date()
+      const y = date.getFullYear()
+      const m = String(date.getMonth() + 1).padStart(2, '0')
+      const d = String(date.getDate()).padStart(2, '0')
+      const today = `${y}-${m}-${d}`
+      // console.log('today >>', today)
+      if (lastData.date !== today) {
+        const arrayItem = {
+          date: today,
+          content: ''
+        }
+        this.activities.unshift(arrayItem)
+      }
+    },
+    // 计算天数函数
+    dateToDays (date) {
+      return dateToDays(date)
     },
     // 随机生成颜色函数
     getColor () {
@@ -125,8 +165,25 @@ export default {
 <style lang="less" scoped>
 .develop {
   padding: 20px 40px;
+  .dev-action {
+    margin-bottom: 20px;
+  }
   /deep/ .el-timeline-item__timestamp {
     color: #1e824a;
+    font-size: 16px;
+  }
+  .content-box {
+    box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
+  }
+  .content-btn {
+    padding: 10px;
+    // position: relative;
+    // right: 0;
+    float: right;
+  }
+  .num-style {
+    color: rgb(247, 126, 146);
+    font-weight: 600;
   }
 }
 </style>
