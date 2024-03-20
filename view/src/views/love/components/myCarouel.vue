@@ -1,6 +1,6 @@
 <template>
   <div class="lun-bo">
-    <el-carousel height="418px">
+    <el-carousel trigger="click" height="418px" indicator-position="none">
       <el-carousel-item>
         <img src="../../../assets/love-02.jpg" width="100%" height="100%" alt="">
       </el-carousel-item>
