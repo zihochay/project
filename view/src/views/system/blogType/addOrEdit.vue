@@ -8,6 +8,11 @@
         <el-form-item label="分类标识" prop="value">
           <el-input clearable v-model="form.value" placeholder="分类标识"></el-input>
         </el-form-item>
+        <el-form-item label="颜色" prop="color">
+          <!-- v-model加上.number 校验数字才能成功 -->
+          <!-- <el-input clearable v-model.number="form.color" autocomplete="off" placeholder="分类颜色"></el-input> -->
+          <el-color-picker v-model="form.color" clearable></el-color-picker>
+        </el-form-item>
         <el-form-item label="分类排序" prop="rank">
           <!-- v-model加上.number 校验数字才能成功 -->
           <el-input clearable v-model.number="form.rank" autocomplete="off" placeholder="分类排序"></el-input>
@@ -48,7 +53,8 @@ export default {
       form: {
         name: '',
         value: '',
-        rank: ''
+        rank: '',
+        color: ''
       },
       rules: {
         name: [

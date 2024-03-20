@@ -28,6 +28,13 @@
           label="分类值">
         </el-table-column>
         <el-table-column
+          prop="color"
+          label="颜色">
+          <template slot-scope="scope">
+            <span :style="{ backgroundColor: scope.row.color, color: '#fff' }">{{scope.row.color}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
           prop="createdAt"
           label="创建时间">
           <template slot-scope="scope">

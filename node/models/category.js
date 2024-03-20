@@ -15,6 +15,10 @@ const schema = new mongoose.Schema({
     unique: true,
     required: [true, '分类 value 必填'],
   },
+  color: {
+    type: String,
+    required: [true, '颜色 color 必填'],
+  },
   rank: {
     type: Number,
     default: 0,
