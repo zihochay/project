@@ -52,6 +52,10 @@ const routes = [
   {
     path: '/justdetail',
     component: () => import('@/views/aboutme/detail.vue')
+  },
+  {
+    path: '/justknowledge',
+    component: () => import('@/views/knowledge/index.vue')
   }
 
 ]
