@@ -1,6 +1,10 @@
 <template>
   <div class="love">
-    <div class="love-left"></div>
+    <div class="love-left">
+      1.按照时间顺序写每个具体事件（东莞学校 -- 长沙 -- 贵州 -- 生日 -- 柳州  -- 厦滘 -- 汉溪长隆.....）
+      2.点击可以进入对应的详情页面（必须实现视差滚动效果）
+      3.学习canves，并使用它做一些动画
+    </div>
     <div class="love-right">
       <div class="right-top">
         <img src="../../assets/love-01.jpg" width="100%" alt="">
@@ -59,16 +63,22 @@ export default {
 .love {
   display: flex;
   width: 1440px;
+  // height: 100vh;
   margin: 0 auto;
+  // background: linear-gradient(#fce5e5, #faecec);
+  // padding-bottom: 20px;
+  // border: 1px solid red;
 }
 .love-left {
   width: 80%;
-  height: 300px;
-  border: 1px solid red;
+  height: 755px;
+  margin: 30px 20px;
+  box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
+  // border: 1px solid red;
 }
 .love-right {
   width: 20%;
-  height: 600px;
+  min-height: 600px;
   padding: 30px 20px;
   text-align: center;
   // border: 1px solid black;
@@ -76,6 +86,7 @@ export default {
     width: 100%;
     overflow: hidden;
     // height: 300px;
+    background-color: #fff;
     margin-bottom: 30px;
     border-radius: 5px;
     padding-bottom: 8px;

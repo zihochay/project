@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <myTitleVue title="个人优势"/>
+    <myTitleVue title="专业技能"/>
     <div class="br-left">
       <div>1、熟练掌握JavaScript、HTML5 、CSS3和ES6的基本用法</div>
       <div>2、掌握基本的网络知识，如http、tcp、cors、cookie和session等</div>
