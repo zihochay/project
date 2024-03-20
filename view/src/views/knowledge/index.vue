@@ -7,7 +7,8 @@
             <div class="list-item" v-for="(item, index) in 10" :key="item" :class="{ flipped: flipIndex === index }" @click="toggleFlip(index)">
               <div class="flip-card-front">
                 <!-- 正面内容 -->
-                {{item}}
+                <RightTopTipsVue text="VUE" color="#3cb782" />
+                {{item}}正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容
               </div>
               <div class="flip-card-back">
                 反面内容
@@ -21,11 +22,12 @@
 </template>
 <script>
 import { getCategoryAll } from '@/api/category'
+import RightTopTipsVue from '@/components/RightTopTips.vue'
 
 export default {
   name: 'know-main',
   components: {
-  //   HelloWorld
+    RightTopTipsVue
   },
   data () {
     return {
@@ -77,7 +79,9 @@ export default {
       margin-bottom: 28px;
       margin-left: 20px;
       margin-right: 20px;
-      box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
+      border: 1px solid #d7dae2;
+      border-radius: 4px;
+      // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       // 翻转功能
       position: relative;
       transform-style: preserve-3d;
@@ -100,6 +104,9 @@ export default {
     .flipped {
       transform: rotateY(180deg);
     }
+  }
+  .list-item:hover {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
 }
 @media (max-width: 800px) {
