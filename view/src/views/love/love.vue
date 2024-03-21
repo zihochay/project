@@ -4,9 +4,35 @@
       <div class="left-bgi">
         <h2 class="bgi-text">我们一起去了好多地方，经历了很多事情...</h2>
       </div>
-      1.按照时间顺序写每个具体事件（东莞学校 -- 长沙 -- 贵州 -- 生日 -- 柳州  -- 厦滘 -- 汉溪长隆.....）
+      <!-- 1.按照时间顺序写每个具体事件（东莞学校 -- 长沙 -- 贵州 -- 生日 -- 柳州  -- 厦滘 -- 汉溪长隆.....）
       2.点击可以进入对应的详情页面（必须实现视差滚动效果）
-      3.学习canves，并使用它做一些动画
+      3.学习canves，并使用它做一些动画 -->
+      <div class="love-title">
+        <div class="title-chinese">
+          我们的故事
+        </div>
+        <div class="title-english">Our Story</div>
+      </div>
+      <div class="love-storys">
+        <div class="btn-common">
+          <div class="btn-icon" @click="handleLeft">
+            <i class="el-icon-arrow-left"></i>
+          </div>
+        </div>
+        <div class="storys-content">
+          <div class="storys-content-child" :style="{ transform: 'translateX(' + translateX + 'px)'}">
+            <storyCardVue v-for="item in allList" :key="item.addEng" :data="item"/>
+            <div class="story-end">
+              未完待续。。。
+            </div>
+          </div>
+        </div>
+        <div class="btn-common">
+          <div class="btn-icon" @click="handleRight">
+            <i class="el-icon-arrow-right"></i>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="love-right">
       <div class="right-top">
@@ -33,15 +59,50 @@
 <script>
 import { dateToDays, dateUntilBirthday } from '@/utils/index'
 import myCarouelVue from './components/myCarouel.vue'
+import storyCardVue from './components/storyCard.vue'
 
 export default {
   name: 'love-story',
   components: {
-    myCarouelVue
+    myCarouelVue,
+    storyCardVue
   },
   data () {
     return {
-
+      allList: [{
+        date: '2022-11-22',
+        address: '广州',
+        addEng: 'GUANGZHOU',
+        img: require('../../assets/love-gz.png')
+      }, {
+        date: '2022-11-22',
+        address: '上海',
+        addEng: 'SHANGHAI',
+        img: require('../../assets/love-gz.png')
+      }, {
+        date: '2022-11-22',
+        address: '深圳',
+        addEng: 'SHENZHEN',
+        img: require('../../assets/love-gz.png')
+      }, {
+        date: '2022-11-22',
+        address: '北京',
+        addEng: 'BEIJING',
+        img: require('../../assets/love-gz.png')
+      }, {
+        date: '2022-11-22',
+        address: '长沙',
+        addEng: 'CHANGSHA',
+        img: require('../../assets/love-gz.png')
+      }, {
+        date: '2022-11-22',
+        address: '罗定',
+        addEng: 'LUODING',
+        img: require('../../assets/love-gz.png')
+      }],
+      currentFirst: 0,
+      currentLast: 2,
+      translateX: 0
     }
   },
   // 创建完成，访问当前this实例
@@ -52,6 +113,29 @@ export default {
   mounted () {
   },
   methods: {
+    handleLeft () {
+      // console.log('向左平移')
+      if (this.translateX === 0) {
+        this.$message({
+          message: '前面真的没有啦~',
+          type: 'info'
+        })
+        return
+      }
+      this.translateX += 356
+    },
+    handleRight () {
+      // console.log('向右平移')
+      const maxRight = (this.allList.length - 1) * 356
+      if (this.translateX === -maxRight) {
+        this.$message({
+          message: '我也是有底线的~',
+          type: 'info'
+        })
+        return
+      }
+      this.translateX -= 356
+    },
     dateToDays (date) {
       return dateToDays(date)
     },
@@ -89,7 +173,96 @@ export default {
       color: #fff;
     }
   }
-  // border: 1px solid red;
+  .love-title {
+    text-align: center;
+    .title-chinese {
+      position: relative;
+      font-size: 30px;
+      font-weight: 500;
+      color: #1f2329;
+      line-height: 45px;
+      font-family: 'Gilroy Semi Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    }
+    .title-chinese::before {
+      content: ' ';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      width: 24px;
+      height: 4px;
+      overflow: hidden;
+      background-color: #3370ff;
+      border-radius: 100px;
+    }
+    .title-english {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 5px;
+      color: #8f959e;
+      margin-top: 8px;
+    }
+  }
+  .love-storys {
+    // border: 1px solid red;
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    height: 335px;
+    .storys-content {
+      width: 890px;
+      overflow: hidden;
+      display: flex;
+      // border: 1px solid red;
+    }
+    .storys-content-child {
+      display: flex;
+      transition: transform 0.5s ease;
+      .story-end {
+        width: 300px;
+        height: 99%;
+        flex-shrink: 0;
+        margin-right: 56px;
+        display: inline-block;
+        // cursor: pointer;
+        // background: white;
+        border: 1px solid #f5f6f7;
+        box-shadow: 1px 2px 28px rgba(0, 0, 0, 0.04);
+        border-radius: 12px;
+        overflow: hidden;
+        text-align: center;
+        line-height: 300px;
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+    .btn-icon {
+      width: 48px;
+      height: 48px;
+      font-size: 20px;
+      line-height: 48px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: #f5f6f7;
+      color: #646a73;
+      cursor: pointer;
+      // border: 1px solid red;
+    }
+    .btn-icon:hover {
+      color: #3370ff;
+      background-color: #e1eaff;
+    }
+    .btn-common {
+      // border: 1px solid red;
+      width: 100px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 .love-right {
   width: 20%;
