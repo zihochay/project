@@ -70,32 +70,32 @@ export default {
   data () {
     return {
       allList: [{
-        date: '2022-11-22',
+        date: '2022-11-12',
         address: '广州',
         addEng: 'GUANGZHOU',
         img: require('../../assets/love-gz.png')
       }, {
-        date: '2022-11-22',
+        date: '2022-11-12',
         address: '上海',
         addEng: 'SHANGHAI',
         img: require('../../assets/love-sh.png')
       }, {
-        date: '2022-11-22',
+        date: '2022-11-12',
         address: '深圳',
         addEng: 'SHENZHEN',
         img: require('../../assets/love-sz.png')
       }, {
-        date: '2022-11-22',
+        date: '2022-11-12',
         address: '长沙',
         addEng: 'CHANGSHA',
         img: require('../../assets/love-cs.png')
       }, {
-        date: '2022-11-22',
+        date: '2022-11-12',
         address: '北京',
         addEng: 'BEIJING',
         img: require('../../assets/love-bj.png')
       }, {
-        date: '2022-11-22',
+        date: '2022-11-12',
         address: '罗定',
         addEng: 'LUODING',
         img: require('../../assets/love-ld.png')
@@ -163,11 +163,14 @@ export default {
   box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
   .left-bgi {
     width: 100%;
-    height: 298px;
+    height: 250px;
     background-image: url('../../assets/love-bg.jpg');
-    background-size: cover;
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // background-position: center center; /* 将背景图居中显示 */
+    background-size: cover; /* 可选：根据容器大小调整背景图尺寸 */
     margin-bottom: 30px;
-    line-height: 298px;
+    line-height: 250px;
     text-align: center;
     .bgi-text {
       color: #fff;
@@ -210,7 +213,7 @@ export default {
     margin-top: 20px;
     display: flex;
     width: 100%;
-    height: 335px;
+    height: 380px;
     .storys-content {
       width: 890px;
       overflow: hidden;
@@ -234,7 +237,7 @@ export default {
         border-radius: 12px;
         overflow: hidden;
         text-align: center;
-        line-height: 300px;
+        line-height: 348px;
         font-size: 24px;
         font-weight: 600;
       }

@@ -87,13 +87,13 @@ export default {
   .story-img {
     // border: 1px solid red;
     width: 100%;
-    height: 270px;
+    height: 320px;
     box-sizing: border-box;
     padding: 10px 20px 10px 20px;
     background-repeat: no-repeat;
     background-position: center center; /* 将背景图居中显示 */
     background-size: cover; /* 可选：根据容器大小调整背景图尺寸 */
-    // position: relative;
+    transition: background-size 1s ease;
     .story-address {
       // top: 20px;
       // left: 26px;
@@ -128,6 +128,7 @@ export default {
       cursor: pointer;
       background-color: #3370ff;
       border-color: #1656fc;
+      opacity: 1;
     }
   }
 }
@@ -141,6 +142,7 @@ export default {
   }
   .story-img {
     opacity: 0.7;
+    background-size: 180%;
   }
 }
 </style>
