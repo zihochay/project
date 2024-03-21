@@ -78,27 +78,27 @@ export default {
         date: '2022-11-22',
         address: '上海',
         addEng: 'SHANGHAI',
-        img: require('../../assets/love-gz.png')
+        img: require('../../assets/love-sh.png')
       }, {
         date: '2022-11-22',
         address: '深圳',
         addEng: 'SHENZHEN',
-        img: require('../../assets/love-gz.png')
-      }, {
-        date: '2022-11-22',
-        address: '北京',
-        addEng: 'BEIJING',
-        img: require('../../assets/love-gz.png')
+        img: require('../../assets/love-sz.png')
       }, {
         date: '2022-11-22',
         address: '长沙',
         addEng: 'CHANGSHA',
-        img: require('../../assets/love-gz.png')
+        img: require('../../assets/love-cs.png')
+      }, {
+        date: '2022-11-22',
+        address: '北京',
+        addEng: 'BEIJING',
+        img: require('../../assets/love-bj.png')
       }, {
         date: '2022-11-22',
         address: '罗定',
         addEng: 'LUODING',
-        img: require('../../assets/love-gz.png')
+        img: require('../../assets/love-ld.png')
       }],
       currentFirst: 0,
       currentLast: 2,
@@ -228,6 +228,7 @@ export default {
         display: inline-block;
         // cursor: pointer;
         // background: white;
+        background-color: rgba(0, 0, 0, 0.04);
         border: 1px solid #f5f6f7;
         box-shadow: 1px 2px 28px rgba(0, 0, 0, 0.04);
         border-radius: 12px;
