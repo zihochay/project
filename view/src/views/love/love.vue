@@ -1,6 +1,9 @@
 <template>
   <div class="love">
     <div class="love-left">
+      <div class="left-bgi">
+        <h2 class="bgi-text">我们一起去了好多地方，经历了很多事情...</h2>
+      </div>
       1.按照时间顺序写每个具体事件（东莞学校 -- 长沙 -- 贵州 -- 生日 -- 柳州  -- 厦滘 -- 汉溪长隆.....）
       2.点击可以进入对应的详情页面（必须实现视差滚动效果）
       3.学习canves，并使用它做一些动画
@@ -74,6 +77,18 @@ export default {
   height: 755px;
   margin: 30px 20px;
   box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
+  .left-bgi {
+    width: 100%;
+    height: 298px;
+    background-image: url('../../assets/love-bg.jpg');
+    background-size: cover;
+    margin-bottom: 30px;
+    line-height: 298px;
+    text-align: center;
+    .bgi-text {
+      color: #fff;
+    }
+  }
   // border: 1px solid red;
 }
 .love-right {
