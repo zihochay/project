@@ -1,5 +1,8 @@
 <template>
   <div class="know">
+    <div class="add-blogs">
+      <el-button type="primary" plain size="mini">新 增 文 章</el-button>
+    </div>
     <div class="top">
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="item in typeList" :key="item.value" :label="item.name" :name="item.value">
@@ -8,10 +11,12 @@
               <div class="flip-card-front">
                 <!-- 正面内容 -->
                 <RightTopTipsVue text="VUE" color="#3cb782" />
-                {{item}}正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容正面内容
+                <div class="ques-cont over-roll">{{item}} 文章问题文</div>
+                <div class="btm-todetail" @click.stop="handleDetail(item)">查看文章详情 > </div>
               </div>
               <div class="flip-card-back">
-                反面内容
+                <div class="esay-cont">{{item}} 文章简答</div>
+                <div class="btm-todetail" @click.stop="handleDetail(item)">还不够详细? 点击查看文章详情 > </div>
               </div>
             </div>
           </div>
@@ -45,6 +50,9 @@ export default {
     this.getTypeAll()
   },
   methods: {
+    handleDetail (item) {
+      console.log('跳转详情页面 》》', item)
+    },
     toggleFlip (index) {
       if (this.flipIndex === index) {
         this.flipIndex = ''
@@ -95,10 +103,20 @@ export default {
       }
       .flip-card-front {
         /* 正面样式 */
+        .ques-cont {
+          padding: 30px 0px 20px 60px;
+          height: 360px;
+          // border: 1px solid red;
+        }
       }
       .flip-card-back {
         /* 反面样式 */
         transform: rotateY(180deg);
+        .esay-cont {
+          padding: 10px 10px 20px 10px;
+          height: 380px;
+          // border: 1px solid red;
+        }
       }
     }
     .flipped {
@@ -108,10 +126,38 @@ export default {
   .list-item:hover {
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
+  .btm-todetail {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    line-height: 40px;
+    // border: 1px solid red;
+    padding-right: 14px;
+    text-align: right;
+    font-size: 12px;
+    color: #1989fa;
+  }
+  .btm-todetail:hover {
+    cursor: pointer;
+  }
+  .add-blogs {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #fff;
+    padding: 5px;
+    z-index: 1;
+    // border: 1px solid red;
+    text-align: center;
+    left: 0px;
+  }
+  .over-roll {
+    overflow: hidden;
+  }
 }
 @media (max-width: 800px) {
   .know {
-    padding: 20px 0px 10px 0px;
+    padding: 20px 0px 15px 0px;
     // background: blue;
   }
 }

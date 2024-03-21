@@ -10,6 +10,10 @@ const schema = new mongoose.Schema({
     unique: true,
     required: [true, '必填字段'],
   }, // 标题
+  easy: {
+    type: String,
+    required: [true, '必填字段'],
+  },
   content: {
     type: String,
     required: [true, '必填字段'],
