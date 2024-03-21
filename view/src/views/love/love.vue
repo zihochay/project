@@ -161,6 +161,8 @@ export default {
   height: 755px;
   margin: 30px 20px;
   box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
+  border-radius: 6px;
+  overflow: hidden;
   .left-bgi {
     width: 100%;
     height: 250px;
