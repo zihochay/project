@@ -9,6 +9,9 @@ router.get('/', controller.find);
 // 查 动态路由
 router.get('/:id', controller.detail);
 
+// addOneRead 
+router.post('/addOneRead', controller.addOneRead);
+
 // 增
 router.post('/', controller.add);
 

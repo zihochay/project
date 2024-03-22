@@ -88,6 +88,19 @@ exports.update = async (ctx) => {
 };
 
 /**
+ * 增
+ */
+exports.addOneRead = async (ctx) => {
+  const { id } = ctx.request.body;
+
+  await dbHelper.addOneRead(id).then((res) => {
+    ctx.body = res;
+  }).catch((err) => {
+    throw new ApiError(err.name, err.message);
+  });
+};
+
+/**
  * 删
  */
 exports.delete = async (ctx) => {

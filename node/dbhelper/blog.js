@@ -23,7 +23,7 @@ exports.findAll = () => Model.find().populate(populateObj).exec();
  */
 exports.findSome = (data) => {
   const {
-    keyword, title, category, status = true, page = 1, limit = 10, sort = '-createdAt',
+    keyword, title, category, status = true, page = 1, limit = 10, sort = 'readCount',
   } = data;
   const query = {};
   const options = {
@@ -79,6 +79,11 @@ exports.update = (data) => {
     new: true, // 返回修改后的数据
   }).exec();
 };
+
+// 更新阅读次数
+exports.addOneRead = (id) => {
+  return Model.findByIdAndUpdate(id, { $inc: { readCount: 1 } })
+}
 
 /**
  * 删除

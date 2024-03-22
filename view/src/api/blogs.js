@@ -14,3 +14,11 @@ export function findBlog () {
     method: 'get'
   })
 }
+
+export function addOneRead (data) {
+  return request({
+    url: '/api/blogs/addOneRead',
+    method: 'post',
+    data
+  })
+}

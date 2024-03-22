@@ -23,6 +23,10 @@ const schema = new mongoose.Schema({
     required: [true, '必填字段'],
     ref: 'Category',
   }, // 分类_id,根据这个id我们就能从 category 表中查找到相关数据。
+  readCount: {
+    type: Number,
+    default: 0,
+  },
   status: {
     type: Boolean,
     default: true,

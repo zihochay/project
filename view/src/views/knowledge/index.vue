@@ -7,7 +7,7 @@
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="item in typeList" :key="item.value" :label="item.name" :name="item.value">
           <div class="list">
-            <div class="list-item" v-for="(item, index) in blogList" :key="item._id" :class="{ flipped: flipIndex === index }" @click="toggleFlip(index)">
+            <div class="list-item" v-for="(item, index) in blogList" :key="item._id" :class="{ flipped: flipIndex === index }" @click="toggleFlip(index, item)">
               <div class="flip-card-front">
                 <!-- 正面内容 -->
                 <RightTopTipsVue :text="item.categoryObj.name" :color="item.categoryObj.color" />
@@ -33,7 +33,7 @@
 </template>
 <script>
 import { getCategoryAll } from '@/api/category'
-import { findBlog } from '@/api/blogs'
+import { findBlog, addOneRead } from '@/api/blogs'
 import RightTopTipsVue from '@/components/RightTopTips.vue'
 
 export default {
@@ -73,12 +73,18 @@ export default {
     handleDetail (item) {
       console.log('跳转详情页面 》》', item)
     },
-    toggleFlip (index) {
+    toggleFlip (index, item) {
       if (this.flipIndex === index) {
         this.flipIndex = ''
       } else {
         this.flipIndex = index
+        this.addOneRead(item._id)
+        // 阅读次数+1
       }
+    },
+    async addOneRead (id) {
+      const res = await addOneRead({ id })
+      console.log(res)
     },
     async getTypeAll () {
       const res = await getCategoryAll()
