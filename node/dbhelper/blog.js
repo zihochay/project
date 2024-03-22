@@ -9,7 +9,7 @@ const Model = require('../models/blog');
 const populateObj = [
   {
     path: 'categoryObj',
-    select: 'name value',
+    select: 'name value color',
   },
 ];
 

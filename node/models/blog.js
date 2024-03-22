@@ -1,8 +1,8 @@
 // models/blog.js
 
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const uniqueValidator = require('mongoose-unique-validator');
-const mongoosePaginate = require('mongoose-paginate');
 
 const schema = new mongoose.Schema({
   title: {

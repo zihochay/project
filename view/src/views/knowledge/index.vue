@@ -1,21 +1,27 @@
 <template>
   <div class="know">
     <div class="add-blogs">
-      <el-button type="primary" plain size="mini">新 增 文 章</el-button>
+      <el-button type="primary" plain size="mini" @click="handleAdd">新 增 文 章</el-button>
     </div>
     <div class="top">
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane v-for="item in typeList" :key="item.value" :label="item.name" :name="item.value">
           <div class="list">
-            <div class="list-item" v-for="(item, index) in 10" :key="item" :class="{ flipped: flipIndex === index }" @click="toggleFlip(index)">
+            <div class="list-item" v-for="(item, index) in blogList" :key="item._id" :class="{ flipped: flipIndex === index }" @click="toggleFlip(index)">
               <div class="flip-card-front">
                 <!-- 正面内容 -->
-                <RightTopTipsVue text="VUE" color="#3cb782" />
-                <div class="ques-cont over-roll">{{item}} 文章问题文</div>
+                <RightTopTipsVue :text="item.categoryObj.name" :color="item.categoryObj.color" />
+                <div class="ques-cont over-roll">
+                  <quill-editor v-model="item.title" :disabled="true" :options="{theme:'bubble'}">
+                  </quill-editor>
+                </div>
                 <div class="btm-todetail" @click.stop="handleDetail(item)">查看文章详情 > </div>
               </div>
               <div class="flip-card-back">
-                <div class="esay-cont">{{item}} 文章简答</div>
+                <div class="esay-cont">
+                  <quill-editor v-model="item.easy" :disabled="true" :options="{theme:'bubble'}">
+                  </quill-editor>
+                </div>
                 <div class="btm-todetail" @click.stop="handleDetail(item)">还不够详细? 点击查看文章详情 > </div>
               </div>
             </div>
@@ -27,6 +33,7 @@
 </template>
 <script>
 import { getCategoryAll } from '@/api/category'
+import { findBlog } from '@/api/blogs'
 import RightTopTipsVue from '@/components/RightTopTips.vue'
 
 export default {
@@ -38,7 +45,8 @@ export default {
     return {
       activeName: 'all',
       typeList: [],
-      flipIndex: ''
+      flipIndex: '',
+      blogList: []
     }
   },
   // 创建完成，访问当前this实例
@@ -48,8 +56,20 @@ export default {
   // 挂载完成，访问DOM元素
   mounted () {
     this.getTypeAll()
+    this.findBlog()
   },
   methods: {
+    handleAdd () {
+      console.log('新增文章')
+      this.$router.push({
+        path: '/knowledge/add'
+      })
+    },
+    async findBlog () {
+      const res = await findBlog()
+      this.blogList = res.result.docs
+      console.log('res >>>', res)
+    },
     handleDetail (item) {
       console.log('跳转详情页面 》》', item)
     },

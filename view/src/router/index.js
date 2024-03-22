@@ -36,11 +36,16 @@ const routes = [
         component: () => import('@/views/knowledge/index.vue')
       },
       {
+        path: '/knowledge/add',
+        component: () => import('@/views/knowledge/components/addEdit.vue')
+      },
+      {
         path: '/love',
         component: () => import('@/views/love/love.vue')
       }
     ]
   },
+  // 不需要导航栏部分路由 --- 开始
   {
     path: '/justIndex',
     component: () => import('@/views/aboutme/index.vue')
@@ -57,7 +62,7 @@ const routes = [
     path: '/justknowledge',
     component: () => import('@/views/knowledge/index.vue')
   }
-
+  // 不需要导航栏部分路由 --- 结束
 ]
 
 const router = new VueRouter({

@@ -12,15 +12,16 @@ exports.find = async (ctx) => {
   let result;
   const reqQuery = ctx.query;
 
-  if (reqQuery && !tool.isEmptyObject(reqQuery)) {
-    if (reqQuery.id) {
-      result = dbHelper.findById(reqQuery.id);
-    } else {
-      result = dbHelper.findSome(reqQuery);
-    }
-  } else {
-    result = dbHelper.findAll();
-  }
+  // if (reqQuery && !tool.isEmptyObject(reqQuery)) {
+  //   if (reqQuery.id) {
+  //     result = dbHelper.findById(reqQuery.id);
+  //   } else {
+  //     result = dbHelper.findSome(reqQuery);
+  //   }
+  // } else {
+  //   result = dbHelper.findAll();
+  // }
+  result = dbHelper.findSome(reqQuery);
 
   await result.then((res) => {
     if (res) {
