@@ -1,6 +1,6 @@
 <template>
   <div class="addedit-blog">
-    <div class="title">创建文章</div>
+    <div class="title">{{ $route.query.id ? '编辑文章' : '创建文章'}}</div>
     <div class="blog-form">
       <el-form ref="addform" label-position="top" :model="form" :rules="rules">
         <el-form-item label="文章分类" prop="category">
@@ -30,7 +30,7 @@
 </template>
 <script>
 import { getCategoryAll } from '@/api/category'
-import { addBlog } from '@/api/blogs'
+import { addBlog, getBlogById, UpdateBlog } from '@/api/blogs'
 
 export default {
   name: 'addedit-blog',
@@ -69,16 +69,42 @@ export default {
   // 挂载完成，访问DOM元素
   mounted () {
     this.getTypeAll()
+    if (this.$route.query.id) {
+      this.getDetail(this.$route.query.id)
+    }
   },
   methods: {
+    async getDetail (id) {
+      const res = await getBlogById(id)
+      this.detailData = res.result
+      const parmas = {
+        category: res.result.category,
+        title: res.result.title,
+        easy: res.result.easy,
+        content: res.result.content,
+        _id: res.result._id
+      }
+      this.form = parmas
+      console.log('res >>', this.detailData)
+    },
     onSubmit () {
       this.$refs.addform.validate(async (valid) => {
         if (valid) {
           console.log('onSubmit >>>', this.form)
           const parmas = { ...this.form, status: true }
+          if (parmas._id) {
+            // UpdateBlog
+            const res = await UpdateBlog(parmas._id, parmas)
+            if (res.code === 'success') {
+              this.$validateMessage('编辑成功', 'success')
+              history.back()
+            }
+            return
+          }
           const res = await addBlog(parmas)
           if (res.code === 'success') {
             this.$validateMessage('新增成功', 'success')
+            history.back()
           }
         } else {
           console.log('error submit!!')
@@ -87,7 +113,30 @@ export default {
       })
     },
     onSave () {
-      console.log('onSave >>>', this.form)
+      // console.log('onSave >>>', this.form)
+      this.$refs.addform.validate(async (valid) => {
+        if (valid) {
+          console.log('onSubmit >>>', this.form)
+          const parmas = { ...this.form, status: false }
+          if (parmas._id) {
+            // UpdateBlog
+            const res = await UpdateBlog(parmas._id, parmas)
+            if (res.code === 'success') {
+              this.$validateMessage('编辑成功', 'success')
+              history.back()
+            }
+            return
+          }
+          const res = await addBlog(parmas)
+          if (res.code === 'success') {
+            this.$validateMessage('保存成功', 'success')
+            history.back()
+          }
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     async getTypeAll () {
       const res = await getCategoryAll()

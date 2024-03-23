@@ -40,6 +40,10 @@ const routes = [
         component: () => import('@/views/knowledge/components/addEdit.vue')
       },
       {
+        path: '/knowledge/read',
+        component: () => import('@/views/knowledge/components/readBlog.vue')
+      },
+      {
         path: '/love',
         component: () => import('@/views/love/love.vue')
       }

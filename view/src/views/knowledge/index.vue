@@ -72,6 +72,12 @@ export default {
     },
     handleDetail (item) {
       console.log('跳转详情页面 》》', item)
+      this.$router.push({
+        path: '/knowledge/read',
+        query: {
+          id: item._id
+        }
+      })
     },
     toggleFlip (index, item) {
       if (this.flipIndex === index) {

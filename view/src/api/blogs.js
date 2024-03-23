@@ -15,6 +15,21 @@ export function findBlog () {
   })
 }
 
+export function getBlogById (id) {
+  return request({
+    url: `/api/blogs/${id}`,
+    method: 'get'
+  })
+}
+
+export function UpdateBlog (id, data) {
+  return request({
+    url: `/api/blogs/${id}`,
+    method: 'put',
+    data
+  })
+}
+
 export function addOneRead (data) {
   return request({
     url: '/api/blogs/addOneRead',
