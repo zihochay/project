@@ -23,7 +23,8 @@
       </el-form>
       <div class="blog-btm">
          <el-button type="primary" plain @click="onSubmit">发 布</el-button>
-         <el-button type="primary" plain @click="onSave">保 存</el-button>
+         <el-button type="primary" v-if="$route.query.id" plain @click="onSave">设 为 草 稿</el-button>
+         <el-button type="primary" v-else plain @click="onSave">保 存 草 稿</el-button>
       </div>
     </div>
   </div>
