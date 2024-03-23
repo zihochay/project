@@ -1,6 +1,6 @@
 <template>
   <div class="blog-detail">
-    <RightTopTipsVue :text="detailData.categoryObj.name" :color="detailData.categoryObj.color"/>
+    <RightTopTipsVue v-if="detailData.categoryObj" :text="detailData.categoryObj.name" :color="detailData.categoryObj.color"/>
     <div class="blog-title" v-html="detailData.title"></div>
     <div class="blog-time">
       <div class="time-item">发布时间：{{ parseTime(detailData.createdAt) }}</div>
@@ -39,7 +39,7 @@ export default {
   mounted () {
     const id = this.$route.query.id
     this.getDetail(id)
-    // this.addOneRead(id)
+    this.addOneRead(id)
   },
   methods: {
     onEdit () {
@@ -60,7 +60,7 @@ export default {
       console.log('res >>', this.detailData)
     },
     parseTime (time) {
-      return parseTime(time)
+      return time && parseTime(time)
     }
   }
 }

@@ -5,8 +5,8 @@
     </div>
     <div class="top">
       <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane v-for="item in typeList" :key="item.value" :label="item.name" :name="item.value">
-          <div class="list">
+        <el-tab-pane v-for="item in typeList" :key="item.value" :label="item.name" :name="item._id">
+          <div class="list" v-if="blogList.length > 0">
             <div class="list-item" v-for="(item, index) in blogList" :key="item._id" :class="{ flipped: flipIndex === index }" @click="toggleFlip(index, item)">
               <div class="flip-card-front">
                 <!-- 正面内容 -->
@@ -25,6 +25,11 @@
                 <div class="btm-todetail" @click.stop="handleDetail(item)">还不够详细? 点击查看文章详情 > </div>
               </div>
             </div>
+          </div>
+          <div class="null-tips" v-else>
+            该模块暂时还没有内容哦，点击
+            <el-button @click="handleAdd" type="text" size="medium">新增文章</el-button>
+            去添加吧～
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -65,8 +70,8 @@ export default {
         path: '/knowledge/add'
       })
     },
-    async findBlog () {
-      const res = await findBlog()
+    async findBlog (data = {}) {
+      const res = await findBlog(data)
       this.blogList = res.result.docs
       console.log('res >>>', res)
     },
@@ -96,9 +101,30 @@ export default {
       const res = await getCategoryAll()
       // console.log('res >>>', res)
       this.typeList = res.result
+      this.typeList.unshift(
+        {
+          name: '全部',
+          value: 'all',
+          _id: 'all'
+        }
+      )
+      this.typeList.push(
+        {
+          name: '草稿',
+          value: 'caogao',
+          _id: 'caogao'
+        }
+      )
     },
-    handleClick (val) {
-      console.log('val >>', val.name)
+    handleClick () {
+      console.log('val >>', this.activeName)
+      if (this.activeName === 'caogao') {
+        this.findBlog({ status: false })
+      } else if (this.activeName === 'all') {
+        this.findBlog()
+      } else {
+        this.findBlog({ category: this.activeName })
+      }
     }
   }
 }
@@ -185,6 +211,10 @@ export default {
   }
   .over-roll {
     overflow: hidden;
+  }
+  .null-tips {
+    text-align: center;
+    margin-top: 140px;
   }
 }
 @media (max-width: 800px) {

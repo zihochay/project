@@ -1,4 +1,5 @@
 import request from '@/utils/request.js'
+import Qs from 'qs'
 
 export function addBlog (data) {
   return request({
@@ -8,9 +9,9 @@ export function addBlog (data) {
   })
 }
 
-export function findBlog () {
+export function findBlog (data) {
   return request({
-    url: '/api/blogs',
+    url: `/api/blogs?${Qs.stringify(data)}`,
     method: 'get'
   })
 }
