@@ -15,7 +15,10 @@
                   <quill-editor v-model="item.title" :disabled="true" :options="{theme:'bubble'}">
                   </quill-editor>
                 </div>
-                <div class="btm-todetail" @click.stop="handleDetail(item)">查看文章详情 > </div>
+                <div class="btm-todetail" @click.stop="handleDetail(item)">
+                  <div><i class="el-icon-view"></i> {{ item.readCount }}</div>
+                  <div>查看文章详情 ></div>
+                </div>
               </div>
               <div class="flip-card-back">
                 <div class="esay-cont">
@@ -187,7 +190,10 @@ export default {
   .btm-todetail {
     width: 100%;
     height: 40px;
+    padding-left: 20px;
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
     line-height: 40px;
     // border: 1px solid red;
     padding-right: 14px;
