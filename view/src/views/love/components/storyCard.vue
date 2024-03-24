@@ -44,7 +44,10 @@ export default {
   methods: {
     handleKnow () {
       console.log('data >>', this.data)
-      this.$alert(`${this.data.address}的故事正在开发中，敬请期待。。。`, '提示')
+      this.$router.push({
+        path: 'love/gz-love'
+      })
+      // this.$alert(`${this.data.address}的故事正在开发中，敬请期待。。。`, '提示')
     }
   }
 }

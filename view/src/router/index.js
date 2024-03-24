@@ -46,6 +46,10 @@ const routes = [
       {
         path: '/love',
         component: () => import('@/views/love/love.vue')
+      },
+      {
+        path: '/love/gz-love',
+        component: () => import('@/views/love/detail/guangzhou.vue')
       }
     ]
   },
