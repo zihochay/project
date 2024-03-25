@@ -65,6 +65,18 @@ export default {
   padding-left: 14px;
   padding-right: 14px;
   // background-color: #fff;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .addr-china {
   text-align: center;
