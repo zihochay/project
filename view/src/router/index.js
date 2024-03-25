@@ -46,11 +46,11 @@ const routes = [
       {
         path: '/love',
         component: () => import('@/views/love/love.vue')
-      },
-      {
-        path: '/love/gz-love',
-        component: () => import('@/views/love/detail/guangzhou.vue')
       }
+      // {
+      //   path: '/love/gz-love',
+      //   component: () => import('@/views/love/detail/guangzhou.vue')
+      // }
     ]
   },
   // 不需要导航栏部分路由 --- 开始
@@ -61,6 +61,10 @@ const routes = [
   {
     path: '/justlove',
     component: () => import('@/views/love/love.vue')
+  },
+  {
+    path: '/love/gz-love',
+    component: () => import('@/views/love/detail/guangzhou.vue')
   },
   {
     path: '/justdetail',
