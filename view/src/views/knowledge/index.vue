@@ -25,7 +25,10 @@
                   <quill-editor v-model="item.easy" :disabled="true" :options="{theme:'bubble'}">
                   </quill-editor>
                 </div>
-                <div class="btm-todetail" @click.stop="handleDetail(item)">还不够详细? 点击查看文章详情 > </div>
+                <div class="btm-todetail" @click.stop="handleDetail(item)">
+                  <div><i class="el-icon-view"></i> {{ item.readCount }}</div>
+                  <div>还不够详细? 点击查看文章详情 > </div>
+                  </div>
               </div>
             </div>
           </div>
@@ -174,9 +177,25 @@ export default {
         /* 反面样式 */
         transform: rotateY(180deg);
         .esay-cont {
-          padding: 10px 10px 20px 10px;
-          height: 380px;
+          // padding: 10px 10px 20px 10px;
+          height: 410px;
           // border: 1px solid red;
+          overflow: auto;
+          scrollbar-width: thin; /* 设置滚动条宽度 */
+          scrollbar-color: transparent transparent; /* 设置滚动条颜色为透明 */
+        }
+        /* 适用于 Safari 浏览器 */
+        .esay-cont::-webkit-scrollbar {
+          width: 6px; /* 设置滚动条宽度 */
+          height: 6px; /* 设置滚动条高度 */
+        }
+
+        .esay-cont::-webkit-scrollbar-thumb {
+          background-color: transparent; /* 设置滚动条 thumb 的背景颜色为透明 */
+        }
+
+        .esay-cont::-webkit-scrollbar-track {
+          background-color: transparent; /* 设置滚动条 track 的背景颜色为透明 */
         }
       }
     }
