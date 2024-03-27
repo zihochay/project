@@ -10,11 +10,15 @@
     </div>
     <div class="easy-style">
       <div class="blog-easy">文章摘要</div>
-      <div v-html="detailData.easy"></div>
+      <!-- <div v-html="detailData.easy"></div> -->
+      <quill-editor v-model="detailData.easy" :disabled="true" :options="{theme:'bubble'}">
+    </quill-editor>
     </div>
     <br /><br />
     <div class="blog-easy">文章正文</div>
-    <div v-html="detailData.content"></div>
+    <!-- <div v-html="detailData.content"></div> -->
+    <quill-editor v-model="detailData.content" :disabled="true" :options="{theme:'bubble'}">
+    </quill-editor>
   </div>
 </template>
 <script>
@@ -69,10 +73,11 @@ export default {
 <style lang="less" scoped>
 .blog-detail {
   margin: 0 40px 30px 40px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   // border: 1px solid red;
   .blog-title {
     padding-top: 20px;
+    padding-bottom: 36px;
     text-align: center;
   }
   .blog-time {
