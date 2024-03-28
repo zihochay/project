@@ -91,11 +91,11 @@ export default {
     },
     handleScroll (event) {
       // 获取滚动容器的滚动位置
-      // console.log('滚动条高度为：', event.target)
-      const scrollTop = event.target.scrollTop
-      const scrollHeight = event.target.scrollHeight
-      const clientHeight = event.target.clientHeight
-      // console.log('滚动条高度为：', scrollTop, scrollHeight, clientHeight)
+      // console.log('滚动条高度为：', document.body)
+      const scrollTop = event.target.scrollTop || document.documentElement.scrollTop
+      const scrollHeight = event.target.scrollHeight || document.body.scrollHeight
+      const clientHeight = event.target.clientHeight || window.innerHeight
+      console.log('滚动条高度为：', scrollTop, scrollHeight, clientHeight)
       // 判断是否滚动到底部
       if (scrollTop + clientHeight + 200 >= scrollHeight) {
         // 执行滚动到底部时的操作
@@ -314,7 +314,7 @@ export default {
 }
 @media (max-width: 800px) {
   .know {
-    padding: 20px 0px 15px 0px;
+    padding: 20px 0px 50px 0px;
     // background: blue;
   }
 }
