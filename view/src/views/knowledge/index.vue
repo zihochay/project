@@ -95,7 +95,7 @@ export default {
       const scrollTop = event.target.scrollTop || document.documentElement.scrollTop
       const scrollHeight = event.target.scrollHeight || document.body.scrollHeight
       const clientHeight = event.target.clientHeight || window.innerHeight
-      console.log('滚动条高度为：', scrollTop, scrollHeight, clientHeight)
+      // console.log('滚动条高度为：', scrollTop, scrollHeight, clientHeight)
       // 判断是否滚动到底部
       if (scrollTop + clientHeight + 200 >= scrollHeight) {
         // 执行滚动到底部时的操作
