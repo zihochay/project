@@ -12,8 +12,9 @@
                 <!-- 正面内容 -->
                 <RightTopTipsVue :text="item.categoryObj.name" :color="item.categoryObj.color" />
                 <div class="ques-cont over-roll">
-                  <quill-editor v-model="item.title" :disabled="true" :options="{theme:'bubble'}">
-                  </quill-editor>
+                  <!-- <quill-editor v-model="item.title" :disabled="true" :options="{theme:'bubble'}">
+                  </quill-editor> -->
+                  <div v-html="item.title"></div>
                 </div>
                 <div class="btm-todetail" @click.stop="handleDetail(item)">
                   <div><i class="el-icon-view"></i> {{ item.readCount }}</div>
@@ -22,8 +23,9 @@
               </div>
               <div class="flip-card-back">
                 <div class="esay-cont">
-                  <quill-editor v-model="item.easy" :disabled="true" :options="{theme:'bubble'}">
-                  </quill-editor>
+                  <!-- <quill-editor v-model="item.easy" :disabled="true" :options="{theme:'bubble'}">
+                  </quill-editor> -->
+                  <div v-html="item.easy"></div>
                 </div>
                 <div class="btm-todetail" @click.stop="handleDetail(item)">
                   <div><i class="el-icon-view"></i> {{ item.readCount }}</div>
@@ -40,6 +42,8 @@
         </el-tab-pane>
       </el-tabs>
     </div>
+    <p class="text-center" v-if="isAllDataLoaded && blogList.length > 0">已加载全部数据</p>
+    <p class="text-center" v-if="!isAllDataLoaded && blogList.length > 0">正在加载更多数据...</p>
   </div>
 </template>
 <script>
@@ -57,32 +61,89 @@ export default {
       activeName: 'all',
       typeList: [],
       flipIndex: '',
-      blogList: []
+      blogList: [],
+      currentPage: 1,
+      isAllDataLoaded: false,
+      isLoading: false
     }
   },
   // 创建完成，访问当前this实例
   created () {
-
+    this.listenerFunction()
   },
   // 挂载完成，访问DOM元素
   mounted () {
     this.getTypeAll()
     this.findBlog()
   },
+  beforeDestroy () {
+    document.removeEventListener('scroll', this.listenerFunction)
+  },
   methods: {
+    listenerFunction (e) {
+      document.addEventListener('scroll', this.handleScroll, true)
+    },
     handleAdd () {
       console.log('新增文章')
       this.$router.push({
         path: '/knowledge/add'
       })
     },
+    handleScroll (event) {
+      // 获取滚动容器的滚动位置
+      // console.log('滚动条高度为：', event.target)
+      const scrollTop = event.target.scrollTop
+      const scrollHeight = event.target.scrollHeight
+      const clientHeight = event.target.clientHeight
+      // console.log('滚动条高度为：', scrollTop, scrollHeight, clientHeight)
+      // 判断是否滚动到底部
+      if (scrollTop + clientHeight + 200 >= scrollHeight) {
+        // 执行滚动到底部时的操作
+        if (!this.isLoading && !this.isAllDataLoaded) {
+          console.log('加载更多。。。')
+          this.currentPage += 1
+          this.loadingMore()
+        }
+      }
+    },
+    async loadingMore () {
+      this.isLoading = true
+      const parmas = {
+        page: this.currentPage,
+        limit: 10
+      }
+      if (this.activeName === 'caogao') {
+        parmas.status = false
+      } else if (this.activeName === 'all') {
+        parmas.category = ''
+      } else {
+        parmas.category = this.activeName
+      }
+      try {
+        const res = await findBlog(parmas)
+        if (res.result.docs.length === 0) {
+          console.log('没有更多数据了')
+          this.isAllDataLoaded = true
+          return
+        }
+        this.blogList = [...this.blogList, ...res.result.docs]
+        this.isLoading = false
+      } catch (error) {
+        this.isLoading = false
+      }
+    },
     async findBlog (data = {}) {
-      const res = await findBlog(data)
+      const params = {
+        page: this.currentPage,
+        limit: 10,
+        ...data
+      }
+      const res = await findBlog(params)
       this.blogList = res.result.docs
-      console.log('res >>>', res)
+      // console.log('res >>>', res)
     },
     handleDetail (item) {
-      console.log('跳转详情页面 》》', item)
+      // console.log('跳转详情页面 》》', item)
       this.$router.push({
         path: '/knowledge/read',
         query: {
@@ -138,7 +199,11 @@ export default {
 
 <style lang="less" scoped>
 .know {
-  padding: 20px 40px 10px 40px;
+  padding: 20px 40px 50px 40px;
+  // text-align: center;
+  // .top {
+  //   padding-bottom: 60px;
+  // }
   .list {
     // border: 1px solid red;
     width: 100%;
@@ -179,6 +244,8 @@ export default {
         .esay-cont {
           // padding: 10px 10px 20px 10px;
           height: 410px;
+          box-sizing: border-box;
+          padding: 20px;
           // border: 1px solid red;
           overflow: auto;
           scrollbar-width: thin; /* 设置滚动条宽度 */
@@ -241,6 +308,9 @@ export default {
     text-align: center;
     margin-top: 140px;
   }
+}
+.text-center {
+  text-align: center;
 }
 @media (max-width: 800px) {
   .know {
