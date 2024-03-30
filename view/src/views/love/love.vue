@@ -70,15 +70,20 @@ export default {
   data () {
     return {
       allList: [{
-        date: '2022-11-12',
+        date: '2022-12-04',
+        address: '东莞',
+        addEng: 'DONGGUAN',
+        img: require('../../assets/dongguan/love-dg.jpg')
+      }, {
+        date: '2023-01-12',
         address: '广州',
         addEng: 'GUANGZHOU',
-        img: require('../../assets/love-gz.png')
+        img: require('../../assets/guangzhou/love-gz.jpg')
       }, {
-        date: '2022-11-12',
-        address: '上海',
-        addEng: 'SHANGHAI',
-        img: require('../../assets/love-sh.png')
+        date: '2023-01-13',
+        address: '长沙',
+        addEng: 'CHANGSHA',
+        img: require('../../assets/changsha/love-cs.jpg')
       }, {
         date: '2022-11-12',
         address: '深圳',
@@ -88,7 +93,7 @@ export default {
         date: '2022-11-12',
         address: '长沙',
         addEng: 'CHANGSHA',
-        img: require('../../assets/love-cs.png')
+        img: require('../../assets/changsha/love-cs.jpg')
       }, {
         date: '2022-11-12',
         address: '北京',

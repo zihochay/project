@@ -56,7 +56,7 @@ export default {
 <style lang="less" scoped>
 .story-card {
   width: 300px;
-  height: 99%;
+  height: 100%;
   flex-shrink: 0;
   margin-right: 56px;
   display: inline-block;
@@ -104,7 +104,7 @@ export default {
       font-weight: 700;
       font-size: 28px;
       line-height: 41px;
-      color: #fff;
+      color: #ccc;
       // z-index: 66;
       .story-eng {
         font-size: 24px;
@@ -145,7 +145,7 @@ export default {
   }
   .story-img {
     opacity: 0.7;
-    background-size: 180%;
+    background-size: 125%;
   }
 }
 </style>

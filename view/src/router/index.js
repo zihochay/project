@@ -67,6 +67,10 @@ const routes = [
     component: () => import('@/views/love/detail/guangzhou.vue')
   },
   {
+    path: '/love/cs-love',
+    component: () => import('@/views/love/detail/changsha.vue')
+  },
+  {
     path: '/justdetail',
     component: () => import('@/views/aboutme/detail.vue')
   },
