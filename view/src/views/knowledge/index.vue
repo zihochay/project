@@ -184,7 +184,8 @@ export default {
       )
     },
     handleClick () {
-      console.log('val >>', this.activeName)
+      // console.log('val >>', this.activeName)
+      this.currentPage = 1
       if (this.activeName === 'caogao') {
         this.findBlog({ status: false })
       } else if (this.activeName === 'all') {
