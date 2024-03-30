@@ -75,6 +75,11 @@ export default {
         addEng: 'DONGGUAN',
         img: require('../../assets/dongguan/love-dg.jpg')
       }, {
+        date: '2022-12-30',
+        address: '罗定',
+        addEng: 'LUODING',
+        img: require('../../assets/luoding/love-ld.jpg')
+      }, {
         date: '2023-01-12',
         address: '广州',
         addEng: 'GUANGZHOU',
@@ -85,25 +90,15 @@ export default {
         addEng: 'CHANGSHA',
         img: require('../../assets/changsha/love-cs.jpg')
       }, {
-        date: '2022-11-12',
-        address: '深圳',
-        addEng: 'SHENZHEN',
-        img: require('../../assets/love-sz.png')
+        date: '2023-04-30',
+        address: '贵州',
+        addEng: 'GUIZHOU',
+        img: require('../../assets/guizhou/love-gz.jpg')
       }, {
-        date: '2022-11-12',
-        address: '长沙',
-        addEng: 'CHANGSHA',
-        img: require('../../assets/changsha/love-cs.jpg')
-      }, {
-        date: '2022-11-12',
-        address: '北京',
-        addEng: 'BEIJING',
-        img: require('../../assets/love-bj.png')
-      }, {
-        date: '2022-11-12',
-        address: '罗定',
-        addEng: 'LUODING',
-        img: require('../../assets/love-ld.png')
+        date: '2023-11-10',
+        address: '柳州',
+        addEng: 'LIUZHOU',
+        img: require('../../assets/liuzhou/love-lz.jpg')
       }],
       currentFirst: 0,
       currentLast: 2,
