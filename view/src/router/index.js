@@ -44,6 +44,10 @@ const routes = [
         component: () => import('@/views/knowledge/components/readBlog.vue')
       },
       {
+        path: '/knowledge/statistics',
+        component: () => import('@/views/knowledge/statistics/statistics.vue')
+      },
+      {
         path: '/love',
         component: () => import('@/views/love/love.vue')
       }
@@ -77,6 +81,10 @@ const routes = [
   {
     path: '/justknowledge',
     component: () => import('@/views/knowledge/index.vue')
+  },
+  {
+    path: '/knowledge/juststatistics',
+    component: () => import('@/views/knowledge/statistics/statistics.vue')
   }
   // 不需要导航栏部分路由 --- 结束
 ]

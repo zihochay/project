@@ -144,7 +144,8 @@ export default {
     }
   }
   .story-img {
-    opacity: 0.7;
+    // opacity: 0.7;
+    background-color: rgba(255, 255, 255, 0.7);
     background-size: 125%;
   }
 }

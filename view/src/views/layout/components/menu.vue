@@ -15,9 +15,11 @@
       <el-menu-item index="/detail">
         简历(详细版)
       </el-menu-item>
-      <el-menu-item index="/knowledge">
-        知识星球
-      </el-menu-item>
+      <el-submenu index="/knowledge">
+        <template slot="title">知识星球</template>
+        <el-menu-item index="/knowledge">知识海洋</el-menu-item>
+        <el-menu-item index="/knowledge/statistics">数据统计</el-menu-item>
+      </el-submenu>
       <el-menu-item index="/devDetail">
         系统开发过程
       </el-menu-item>
