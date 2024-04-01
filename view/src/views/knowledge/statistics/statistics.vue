@@ -31,12 +31,23 @@
           <div class="avg-box">
             <el-statistic>
               <template slot="title">
+                <span class="avg-title">文章总数</span>
+              </template>
+              <template slot="formatter">
+                <span class="avg-value2">1000</span>
+              </template>
+            </el-statistic>
+          </div>
+          <div class="avg-box">
+            <el-statistic>
+              <template slot="title">
                 <span class="avg-title">每日平均新增</span>
               </template>
               <template slot="formatter">
                 <span class="avg-value">23.23</span>
               </template>
-            </el-statistic></div>
+            </el-statistic>
+          </div>
         </div>
       </div>
       <div class="width32"></div>
@@ -158,7 +169,7 @@ export default {
     .avg-data {
       padding-top: 5%;
       .avg-box {
-        width: 50%;
+        width: 33%;
         text-align: center;
         .avg-title {
           color: #ccc;
@@ -167,6 +178,11 @@ export default {
         .avg-value {
           color: rgb(53, 53, 250);
           font-weight: 600;
+          font-size: 32px;
+        }
+        .avg-value2 {
+          color: red;
+          font-weight: 700;
           font-size: 32px;
         }
       }
