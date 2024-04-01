@@ -2,7 +2,9 @@
   <div class="statistics">
     <div class="title">文章数据仪表盘</div>
     <div class="echart1 flex">
-      <div class="width32"></div>
+      <div class="width32">
+        <!-- <echart1Vue /> -->
+      </div>
       <div class="width32 padding10">
         <div class="time">截止时间：{{ getCurrentTime() }}</div>
         <div class="today-data">
@@ -40,18 +42,24 @@
       <div class="width32"></div>
     </div>
     <div class="echart2 flex">
-      <div class="width48"></div>
-      <div class="width48"></div>
+      <div class="width48 padding10">
+        <echart1Vue />
+      </div>
+      <div class="width48 padding10">
+        <echart2Vue />
+      </div>
     </div>
   </div>
 </template>
 <script>
-// import { parseTime } from '@/utils/index'
+import echart1Vue from '../components/echart1.vue'
+import echart2Vue from '../components/echart2.vue'
 
 export default {
   name: 'text-main',
   components: {
-  //   HelloWorld
+    echart1Vue,
+    echart2Vue
   },
   data () {
     return {

@@ -48,6 +48,8 @@ Vue.use(VueQuillEditor, {
 })
 Vue.config.productionTip = false
 
+Vue.prototype.$echarts = echarts
+
 Vue.prototype.$validateMessage = function (message, type = 'warning') {
   this.$notify({
     message,
