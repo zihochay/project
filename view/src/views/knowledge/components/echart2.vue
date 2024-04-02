@@ -16,22 +16,36 @@ export default {
   data () {
     return {
       option: {
-        // title: {
-        //   text: '每日阅读量',
-        //   textStyle: {
-        //     color: '#fff'
-        //   }
-        // },
+        color: {
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [
+            {
+              offset: 0,
+              color: '#21B8FA' // 随便取颜色
+            },
+            {
+              offset: 0.8,
+              color: '#21B8FA' + '00'
+            }
+          ]
+        },
         tooltip: {},
         xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+          data: ['2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02']
         },
         yAxis: {},
         series: [
           {
-            name: '销量',
+            name: '阅读量',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
+            barWidth: '20',
+            itemStyle: {
+              borderRadius: [10, 10, 0, 0]
+            },
+            data: [5, 20, 36, 10, 10, 20, 15]
           }
         ]
       }
