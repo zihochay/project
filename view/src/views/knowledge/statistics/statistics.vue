@@ -2,8 +2,8 @@
   <div class="statistics">
     <div class="title">文章数据仪表盘</div>
     <div class="echart1 flex">
-      <div class="width32">
-        <!-- <echart1Vue /> -->
+      <div class="width32 padding10">
+        <echart3ListVue />
       </div>
       <div class="width32 padding10">
         <div class="time">截止时间：{{ getCurrentTime() }}</div>
@@ -50,7 +50,9 @@
           </div>
         </div>
       </div>
-      <div class="width32"></div>
+      <div class="width32 padding10">
+        <echart4Vue />
+      </div>
     </div>
     <div class="echart2 flex">
       <div class="width48 padding10">
@@ -65,12 +67,16 @@
 <script>
 import echart1Vue from '../components/echart1.vue'
 import echart2Vue from '../components/echart2.vue'
+import echart3ListVue from '../components/echart3List.vue'
+import echart4Vue from '../components/echart4.vue'
 
 export default {
   name: 'text-main',
   components: {
     echart1Vue,
-    echart2Vue
+    echart2Vue,
+    echart3ListVue,
+    echart4Vue
   },
   data () {
     return {
