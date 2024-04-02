@@ -32,14 +32,39 @@ export default {
             }
           ]
         },
-        tooltip: {},
-        xAxis: {
-          data: ['2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02']
+        tooltip: {
+          backgroundColor: 'rgba(255, 255, 255, 0.15)',
+          borderColor: 'rgba(255, 255, 255, 0.15)',
+          textStyle: {
+            color: '#fff'
+          }
         },
-        yAxis: {},
+        xAxis: {
+          data: ['2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02'],
+          axisTick: {
+            alignWithLabel: true
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#fff',
+              type: 'dotted'
+            }
+          }
+        },
+        yAxis: {
+          splitLine: {
+            show: false // 隐藏 y 轴的分隔线
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#fff',
+              type: 'dotted'
+            }
+          }
+        },
         series: [
           {
-            name: '阅读量',
+            name: '新增量',
             type: 'bar',
             barWidth: '20',
             itemStyle: {
