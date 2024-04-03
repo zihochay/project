@@ -24,6 +24,12 @@ export default {
             color: '#fff'
           }
         },
+        legend: {
+          orient: 'horizontal',
+          top: 10,
+          left: 'center',
+          data: []
+        },
         series: [
           {
             name: '文章分类',
@@ -66,6 +72,7 @@ export default {
       // this.blogList = res.result
       const list = res.result
       const tempList = []
+      const tempList2 = []
       for (let i = 0; i < list.length; i++) {
         const obj = {
           name: list[i].name,
@@ -73,8 +80,10 @@ export default {
           color: list[i].color
         }
         tempList.push(obj)
+        tempList2.push(list[i].name)
       }
       this.option.series[0].data = tempList
+      this.option.legend.data = tempList2
       this.initEchart()
     },
     initEchart () {
