@@ -9,6 +9,15 @@ router.get('/', controller.find);
 // 查 动态路由
 router.get('/:id', controller.detail);
 
+// 查 今天新增 getData
+router.post('/findToday', controller.findToday);
+
+// 查 今天新增
+router.post('/getData', controller.getData);
+
+// 查 每个分类下的文章数据
+router.post('/getCateBlog', controller.getCateBlog);
+
 // addOneRead 
 router.post('/addOneRead', controller.addOneRead);
 

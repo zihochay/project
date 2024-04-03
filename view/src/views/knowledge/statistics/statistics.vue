@@ -9,8 +9,8 @@
         <div class="time">截止时间：{{ getCurrentTime() }}</div>
         <div class="today-data">
           <div class="num-data flex">
-            <div class="num-box">222</div>
-            <div class="num-box">333</div>
+            <div class="num-box">{{ todayData.readCount }}</div>
+            <div class="num-box">{{ todayData.articleCount }}</div>
           </div>
           <div class="num-desc flex">
             <div class="desc-box">今日新增阅读</div>
@@ -24,7 +24,7 @@
                 <span class="avg-title">每日平均阅读</span>
               </template>
               <template slot="formatter">
-                <span class="avg-value">23.32</span>
+                <span class="avg-value">{{ avgRead }}</span>
               </template>
             </el-statistic>
           </div>
@@ -34,7 +34,7 @@
                 <span class="avg-title">文章总数</span>
               </template>
               <template slot="formatter">
-                <span class="avg-value2">1000</span>
+                <span class="avg-value2">{{ total }}</span>
               </template>
             </el-statistic>
           </div>
@@ -44,7 +44,7 @@
                 <span class="avg-title">每日平均新增</span>
               </template>
               <template slot="formatter">
-                <span class="avg-value">23.23</span>
+                <span class="avg-value">{{ avgAdd }}</span>
               </template>
             </el-statistic>
           </div>
@@ -56,10 +56,10 @@
     </div>
     <div class="echart2 flex">
       <div class="width48 padding10">
-        <echart1Vue />
+        <echart1Vue :data="detailData" v-if="detailData.length > 0"/>
       </div>
       <div class="width48 padding10">
-        <echart2Vue />
+        <echart2Vue :data="detailData" v-if="detailData.length > 0"/>
       </div>
     </div>
   </div>
@@ -69,6 +69,7 @@ import echart1Vue from '../components/echart1.vue'
 import echart2Vue from '../components/echart2.vue'
 import echart3ListVue from '../components/echart3List.vue'
 import echart4Vue from '../components/echart4.vue'
+import { getData } from '@/api/blogs'
 
 export default {
   name: 'text-main',
@@ -80,17 +81,34 @@ export default {
   },
   data () {
     return {
-
+      detailData: [],
+      todayData: {},
+      total: 0,
+      avgAdd: 0,
+      avgRead: 0
     }
   },
   // 创建完成，访问当前this实例
   created () {
-
   },
   // 挂载完成，访问DOM元素
   mounted () {
+    this.getData()
   },
   methods: {
+    async getData () {
+      const res = await getData()
+      console.log('res >>', res)
+      this.detailData = res.result
+      this.todayData = res.result[res.result.length - 1]
+      let totalRead = 0
+      for (let i = 0; i < res.result.length; i++) {
+        this.total += res.result[i].articleCount
+        totalRead += res.result[i].readCount
+      }
+      this.avgAdd = (this.total / res.result.length).toFixed(2)
+      this.avgRead = (totalRead / res.result.length).toFixed(2)
+    },
     getCurrentTime () {
       const currentDate = new Date()
       const year = currentDate.getFullYear()

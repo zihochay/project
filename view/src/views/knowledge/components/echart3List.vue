@@ -2,17 +2,16 @@
   <div class="echart-list">
     <echartTitle title="每日新增文章"/>
     <div class="list-blogs">
-      <div class="blog-item">文章名称文章名称文章名称文章名称文章名称文章名称文章名称文章名称</div>
-      <div class="blog-item">文章名称文章名称文章名称文章名称</div>
-      <div class="blog-item">文章名称文章名称文章名称文章名称</div>
-      <div class="blog-item">文章名称文章名称文章名称文章名称</div>
-      <div class="blog-item">文章名称文章名称文章名称文章名称</div>
-      <div class="blog-item">文章名称文章名称文章名称文章名称</div>
+      <div class="blog-item" v-for="item in blogList" :key="item._id" @click="toRead(item)">
+        <!-- <div v-text="item.title"></div> -->
+        {{ extractTextFromTag(item.title, 'h2')}}
+      </div>
     </div>
   </div>
 </template>
 <script>
 import echartTitle from './echartTitle.vue'
+import { getBlogToday } from '@/api/blogs'
 
 export default {
   name: 'echart-list',
@@ -21,18 +20,43 @@ export default {
   },
   data () {
     return {
-
+      blogList: []
     }
   },
   // 创建完成，访问当前this实例
   created () {
-
   },
   // 挂载完成，访问DOM元素
   mounted () {
+    this.getList()
   },
   methods: {
+    toRead (item) {
+      this.$router.push({
+        path: '/knowledge/read',
+        query: {
+          id: item._id
+        }
+      })
+    },
+    extractTextFromTag (html, tagName) {
+      const element = document.createElement('div')
+      element.innerHTML = html
 
+      const tags = element.getElementsByTagName(tagName)
+      // console.log('tag >>', tags)
+      if (tags.length > 0) {
+        const tag = tags[tags.length - 1]
+        return tag.textContent.trim()
+      }
+
+      return ''
+    },
+    async getList () {
+      const res = await getBlogToday()
+      this.blogList = res.result
+      console.log('list >>', this.blogList)
+    }
   }
 }
 </script>

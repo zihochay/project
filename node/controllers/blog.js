@@ -34,6 +34,30 @@ exports.find = async (ctx) => {
   });
 };
 
+exports.findToday = async (ctx) => {
+  await dbHelper.findToday().then((res) => {
+    ctx.body = res;
+  }).catch((err) => {
+    throw new ApiError(err.name, err.message);
+  });
+}
+
+exports.getData = async (ctx) => {
+  await dbHelper.getData().then((res) => {
+    ctx.body = res;
+  }).catch((err) => {
+    throw new ApiError(err.name, err.message);
+  });
+}
+
+exports.getCateBlog = async (ctx) => {
+  await dbHelper.getCateBlog().then((res) => {
+    ctx.body = res;
+  }).catch((err) => {
+    throw new ApiError(err.name, err.message);
+  });
+}
+
 /**
  * 查 详情
  */

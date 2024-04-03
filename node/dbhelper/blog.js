@@ -58,6 +58,16 @@ exports.findSome = (data) => {
   return Model.paginate(query, options);
 };
 
+// 查找今天数据
+exports.findToday = async () => {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  // console.log('today >>', today)
+  return Model.find({ createdAt: { $gte: today } });
+  // console.log('data >>', data)
+  // return data
+}
+
 /**
  * 查找单个 详情
  */
@@ -89,3 +99,55 @@ exports.addOneRead = (id) => {
  * 删除
  */
 exports.delete = (id) => Model.findByIdAndDelete(id).exec();
+
+// 查询统计数据
+exports.getData = () => {
+  return Model.aggregate([
+    {
+      $group: {
+        _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+        articleCount: { $sum: 1 },
+        readCount: { $sum: "$readCount" }
+      }
+    },
+    {
+      $sort: { _id: 1 }
+    }
+  ]);
+}
+
+// 查询每个文章分类数据
+exports.getCateBlog = () => {
+  return Model.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        articleCount: { $sum: 1 }
+      }
+    },
+    {
+      $lookup: {
+        from: "categories",    // category 表的名称
+        localField: "_id",
+        foreignField: "_id",
+        as: "category"
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        category: {
+          $mergeObjects: [
+            { $arrayElemAt: ["$category", 0] },
+            { articleCount: "$articleCount" }
+          ]
+        }
+      }
+    },
+    {
+      $replaceRoot: {
+        newRoot: "$category"
+      }
+    }
+  ]);
+}

@@ -39,3 +39,24 @@ export function addOneRead (data) {
     options: { maskFlag: false }
   })
 }
+
+export function getBlogToday () {
+  return request({
+    url: '/api/blogs/findToday',
+    method: 'post'
+  })
+}
+
+export function getData () {
+  return request({
+    url: '/api/blogs/getData',
+    method: 'post'
+  })
+}
+
+export function getCateBlog () {
+  return request({
+    url: '/api/blogs/getCateBlog',
+    method: 'post'
+  })
+}

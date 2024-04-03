@@ -6,6 +6,7 @@
 </template>
 <script>
 import echartTitle from './echartTitle.vue'
+import { getCateBlog } from '@/api/blogs'
 
 export default {
   name: 'echart-pie',
@@ -14,30 +15,38 @@ export default {
   },
   data () {
     return {
+      list: [],
       option: {
         tooltip: {
-          trigger: 'item'
-        },
-        legend: {
-          top: '5%',
-          left: 'center'
+          backgroundColor: 'rgba(255, 255, 255, 0.15)',
+          borderColor: 'rgba(255, 255, 255, 0.15)',
+          textStyle: {
+            color: '#fff'
+          }
         },
         series: [
           {
-            name: 'Access From',
+            name: '文章分类',
             type: 'pie',
             radius: ['70%', '100%'],
             center: ['50%', '90%'],
-            // adjust the start and end angle
+            label: {
+              show: false,
+              position: 'top'
+            },
+            labelLine: {
+              show: false // 设置为 false，表示不显示连线
+            },
             startAngle: 180,
             endAngle: 360,
-            data: [
-              { value: 1048, name: 'Search Engine' },
-              { value: 735, name: 'Direct' },
-              { value: 580, name: 'Email' },
-              { value: 484, name: 'Union Ads' },
-              { value: 300, name: 'Video Ads' }
-            ]
+            data: [],
+            itemStyle: {
+              normal: {
+                color: function (params) {
+                  return params.data.color
+                }
+              }
+            }
           }
         ]
       }
@@ -49,9 +58,25 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
-    this.initEchart()
+    this.getCateBlog()
   },
   methods: {
+    async getCateBlog () {
+      const res = await getCateBlog()
+      // this.blogList = res.result
+      const list = res.result
+      const tempList = []
+      for (let i = 0; i < list.length; i++) {
+        const obj = {
+          name: list[i].name,
+          value: list[i].articleCount,
+          color: list[i].color
+        }
+        tempList.push(obj)
+      }
+      this.option.series[0].data = tempList
+      this.initEchart()
+    },
     initEchart () {
       // const chart = this.$echarts.init(document.getElementById('echarts1'))
       const chart = this.$echarts.init(

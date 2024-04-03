@@ -10,6 +10,12 @@ import echartTitle from './echartTitle.vue'
 
 export default {
   name: 'echarts-2',
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    }
+  },
   components: {
     echartTitle
   },
@@ -40,7 +46,7 @@ export default {
           }
         },
         xAxis: {
-          data: ['2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02', '2024-04-02'],
+          data: this.setData(this.data, '_id'),
           axisTick: {
             alignWithLabel: true
           },
@@ -70,7 +76,7 @@ export default {
             itemStyle: {
               borderRadius: [10, 10, 0, 0]
             },
-            data: [5, 20, 36, 10, 10, 20, 15]
+            data: this.setData(this.data, 'readCount')
           }
         ]
       }
@@ -85,6 +91,13 @@ export default {
     this.initEchart()
   },
   methods: {
+    setData (list, key) {
+      const newList = []
+      for (let i = 0; i < list.length; i++) {
+        newList.push(list[i][key])
+      }
+      return newList
+    },
     initEchart () {
       // const chart = this.$echarts.init(document.getElementById('echarts2'))
       const chart = this.$echarts.init(
