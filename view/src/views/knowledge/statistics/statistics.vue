@@ -70,6 +70,7 @@ import echart2Vue from '../components/echart2.vue'
 import echart3ListVue from '../components/echart3List.vue'
 import echart4Vue from '../components/echart4.vue'
 import { getData } from '@/api/blogs'
+import { dateToDays } from '@/utils/index'
 
 export default {
   name: 'text-main',
@@ -106,8 +107,9 @@ export default {
         this.total += res.result[i].articleCount
         totalRead += res.result[i].readCount
       }
-      this.avgAdd = (this.total / res.result.length).toFixed(2)
-      this.avgRead = (totalRead / res.result.length).toFixed(2)
+      const allDay = dateToDays('2024-03-22')
+      this.avgAdd = (this.total / allDay).toFixed(2)
+      this.avgRead = (totalRead / allDay).toFixed(2)
     },
     getCurrentTime () {
       const currentDate = new Date()

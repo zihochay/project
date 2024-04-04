@@ -109,6 +109,9 @@ export default {
       return newList
     },
     updateOption () {
+      const chart = this.$echarts.init(
+        document.getElementById('echarts2')
+      )
       if (this.allList.length > 7) {
         let currentIndex = 0
         setInterval(() => {
@@ -124,7 +127,8 @@ export default {
 
           this.option.xAxis.data = segment.map(item => item.name)
           this.option.series[0].data = segment.map(item => item.value)
-          this.initEchart()
+          // this.initEchart()
+          chart.setOption(this.option)
 
           currentIndex = (currentIndex + 1) % this.allList.length
         }, 1500)
@@ -132,7 +136,8 @@ export default {
         // this.option.series[0].data = this.allList
         this.option.xAxis.data = this.allList.map(item => item.name)
         this.option.series[0].data = this.allList.map(item => item.value)
-        this.initEchart()
+        // this.initEchart()
+        chart.setOption(this.option)
       }
     },
     initEchart () {
