@@ -46,7 +46,7 @@ export default {
           }
         },
         xAxis: {
-          data: this.setData(this.data, '_id'),
+          data: [],
           axisTick: {
             alignWithLabel: true
           },
@@ -76,10 +76,17 @@ export default {
             itemStyle: {
               borderRadius: [10, 10, 0, 0]
             },
-            data: this.setData(this.data, 'readCount')
+            label: {
+              show: true,
+              distance: -18,
+              position: 'top',
+              color: '#fff'
+            },
+            data: []
           }
         ]
-      }
+      },
+      allList: this.setData(this.data)
     }
   },
   // 创建完成，访问当前this实例
@@ -88,15 +95,45 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
-    this.initEchart()
+    this.updateOption()
   },
   methods: {
-    setData (list, key) {
+    setData (list) {
       const newList = []
       for (let i = 0; i < list.length; i++) {
-        newList.push(list[i][key])
+        newList.push({
+          name: list[i]._id,
+          value: list[i].readCount
+        })
       }
       return newList
+    },
+    updateOption () {
+      if (this.allList.length > 7) {
+        let currentIndex = 0
+        setInterval(() => {
+          const startIndex = currentIndex
+          const endIndex = (currentIndex + 6) % this.allList.length
+          let segment = []
+
+          if (startIndex <= endIndex) {
+            segment = this.allList.slice(startIndex, endIndex + 1)
+          } else {
+            segment = this.allList.slice(startIndex).concat(this.allList.slice(0, endIndex + 1))
+          }
+
+          this.option.xAxis.data = segment.map(item => item.name)
+          this.option.series[0].data = segment.map(item => item.value)
+          this.initEchart()
+
+          currentIndex = (currentIndex + 1) % this.allList.length
+        }, 1500)
+      } else {
+        // this.option.series[0].data = this.allList
+        this.option.xAxis.data = this.allList.map(item => item.name)
+        this.option.series[0].data = this.allList.map(item => item.value)
+        this.initEchart()
+      }
     },
     initEchart () {
       // const chart = this.$echarts.init(document.getElementById('echarts2'))
