@@ -42,6 +42,19 @@ exports.findToday = async (ctx) => {
   });
 }
 
+exports.findAddRead = async (ctx) => {
+  await dbHelper.findAddRead().then((res) => {
+    console.log('res >>', res)
+    const stats = {
+      newArticles: res.length > 0 ? res[0].newArticles : 0,
+      totalViews: res.length > 0 ? res[0].totalViews : 0
+    };
+    ctx.body = stats;
+  }).catch((err) => {
+    throw new ApiError(err.name, err.message);
+  });
+}
+
 exports.getData = async (ctx) => {
   await dbHelper.getData().then((res) => {
     ctx.body = res;

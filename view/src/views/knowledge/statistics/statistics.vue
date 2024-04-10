@@ -9,8 +9,8 @@
         <div class="time">截止时间：{{ getCurrentTime() }}</div>
         <div class="today-data">
           <div class="num-data flex">
-            <div class="num-box">{{ todayData.readCount }}</div>
-            <div class="num-box">{{ todayData.articleCount }}</div>
+            <div class="num-box">{{ todayData.totalViews }}</div>
+            <div class="num-box">{{ todayData.newArticles }}</div>
           </div>
           <div class="num-desc flex">
             <div class="desc-box">今日新增阅读</div>
@@ -69,7 +69,7 @@ import echart1Vue from '../components/echart1.vue'
 import echart2Vue from '../components/echart2.vue'
 import echart3ListVue from '../components/echart3List.vue'
 import echart4Vue from '../components/echart4.vue'
-import { getData } from '@/api/blogs'
+import { getData, findAddRead } from '@/api/blogs'
 import { dateToDays } from '@/utils/index'
 
 export default {
@@ -95,13 +95,14 @@ export default {
   // 挂载完成，访问DOM元素
   mounted () {
     this.getData()
+    this.findAddRead()
   },
   methods: {
     async getData () {
       const res = await getData()
-      console.log('res >>', res)
+      // console.log('res >>', res)
       this.detailData = res.result
-      this.todayData = res.result[res.result.length - 1]
+      // this.todayData = res.result[res.result.length - 1]
       let totalRead = 0
       for (let i = 0; i < res.result.length; i++) {
         this.total += res.result[i].articleCount
@@ -110,6 +111,11 @@ export default {
       const allDay = dateToDays('2024-03-22')
       this.avgAdd = (this.total / allDay).toFixed(2)
       this.avgRead = (totalRead / allDay).toFixed(2)
+    },
+    async findAddRead () {
+      const res = await findAddRead()
+      this.todayData = res.result
+      // console.log('res >>', res)
     },
     getCurrentTime () {
       const currentDate = new Date()

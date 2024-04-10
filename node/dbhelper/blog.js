@@ -58,7 +58,7 @@ exports.findSome = (data) => {
   return Model.paginate(query, options);
 };
 
-// 查找今天数据
+// 查找今天新增文章数据
 exports.findToday = async () => {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
@@ -66,6 +66,28 @@ exports.findToday = async () => {
   return Model.find({ createdAt: { $gte: today } });
   // console.log('data >>', data)
   // return data
+}
+
+// 查询今天文章新增数量和阅读量
+exports.findAddRead = async () => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // 将时间设置为当天的开始时刻
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1); // 将时间设置为第二天的开始时刻
+  return Model.aggregate([
+    {
+      $match: {
+        createdAt: { $gte: today, $lt: tomorrow }
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        newArticles: { $sum: 1},
+        totalViews: { $sum: '$readCount' }
+      }
+    },
+  ])
 }
 
 /**

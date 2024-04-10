@@ -54,6 +54,13 @@ export function getData () {
   })
 }
 
+export function findAddRead () {
+  return request({
+    url: '/api/blogs/findAddRead',
+    method: 'post'
+  })
+}
+
 export function getCateBlog () {
   return request({
     url: '/api/blogs/getCateBlog',
