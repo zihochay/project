@@ -36,6 +36,8 @@
     </div>
     <div class="love-right">
       <div class="right-top">
+        <div class="love-music" @click="playMusic">
+        </div>
         <img src="../../assets/love-01.jpg" width="100%" alt="">
         <div class="love-name">蓝月茵</div>
         <div class="love-tips">幸好，一直是你</div>
@@ -60,6 +62,7 @@
 import { dateToDays, dateUntilBirthday } from '@/utils/index'
 import myCarouelVue from './components/myCarouel.vue'
 import storyCardVue from './components/storyCard.vue'
+import musicUrl from '../../assets/prefect.mp3'
 
 export default {
   name: 'love-story',
@@ -102,7 +105,9 @@ export default {
       }],
       currentFirst: 0,
       currentLast: 2,
-      translateX: 0
+      translateX: 0,
+      musicUrl: musicUrl,
+      playOrNot: true
     }
   },
   // 创建完成，访问当前this实例
@@ -111,8 +116,26 @@ export default {
   },
   // 挂载完成，访问DOM元素
   mounted () {
+    // this.playMusic()
+    this.audio = new Audio(this.musicUrl)
+    this.audio.loop = true
+  },
+  beforeDestroy () {
+    this.audio.pause()
+    this.audio.currentTime = 0
+    this.audio.loop = false
   },
   methods: {
+    playMusic () {
+      console.log('playOrNot', this.playOrNot)
+      // const audio = new Audio(this.musicUrl)
+      if (this.playOrNot) {
+        this.audio.play()
+      } else {
+        this.audio.pause()
+      }
+      this.playOrNot = !this.playOrNot
+    },
     handleLeft () {
       // console.log('向左平移')
       if (this.translateX === 0) {
@@ -284,6 +307,7 @@ export default {
     margin-bottom: 30px;
     border-radius: 5px;
     padding-bottom: 8px;
+    position: relative;
     // border: 1px solid black;
     box-shadow: rgba(0,0,0,0.2) 0 2px 8px;
     .love-name {
@@ -310,6 +334,14 @@ export default {
       margin-top: 4px;
       color: rgb(247, 126, 146);
       font-weight: 600;
+    }
+    .love-music {
+      // float: right;
+      position: absolute;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      border: 1px solid red;
     }
   }
 }
