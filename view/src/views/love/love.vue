@@ -36,7 +36,7 @@
     </div>
     <div class="love-right">
       <div class="right-top">
-        <div class="love-music" @click="playMusic">
+        <div :class="playOrNot ? 'love-music bgc-play' : 'love-music bgc-stop'" @click="playMusic">
         </div>
         <img src="../../assets/love-01.jpg" width="100%" alt="">
         <div class="love-name">蓝月茵</div>
@@ -62,7 +62,7 @@
 import { dateToDays, dateUntilBirthday } from '@/utils/index'
 import myCarouelVue from './components/myCarouel.vue'
 import storyCardVue from './components/storyCard.vue'
-import musicUrl from '../../assets/prefect.mp3'
+import musicUrl from '../../assets/love story.mp3'
 
 export default {
   name: 'love-story',
@@ -107,7 +107,7 @@ export default {
       currentLast: 2,
       translateX: 0,
       musicUrl: musicUrl,
-      playOrNot: true
+      playOrNot: false
     }
   },
   // 创建完成，访问当前this实例
@@ -128,13 +128,12 @@ export default {
   methods: {
     playMusic () {
       console.log('playOrNot', this.playOrNot)
-      // const audio = new Audio(this.musicUrl)
+      this.playOrNot = !this.playOrNot
       if (this.playOrNot) {
         this.audio.play()
       } else {
         this.audio.pause()
       }
-      this.playOrNot = !this.playOrNot
     },
     handleLeft () {
       // console.log('向左平移')
@@ -338,10 +337,31 @@ export default {
     .love-music {
       // float: right;
       position: absolute;
-      right: 0;
-      width: 50px;
-      height: 50px;
-      border: 1px solid red;
+      right: 5px;
+      top: 5px;
+      width: 32px;
+      height: 32px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center; /* 将背景图居中显示 */
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .bgc-stop {
+      background-image: url('../../assets/music-pause.png');
+    }
+    .bgc-play {
+      background-image: url('../../assets/musicIcon.png');
+      animation: rotate 10s linear infinite; /* 设置旋转动画 */
+    }
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg); /* 起始角度 */
+      }
+      to {
+        transform: rotate(360deg); /* 终止角度 */
+      }
     }
   }
 }
