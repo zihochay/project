@@ -14,12 +14,7 @@
     <div class="detail-main hid-scroll">
       <myTitleVue title="自我介绍" id="section1"/>
       <div class="br-left">
-        <div>1、https://juejin.cn/post/7105366066632753165?searchId=2024032520294940B9382BBAD84F3331AB#heading-0</div>
-        <div>2、掌握基本的网络知识，如http、tcp、cors、cookie和session等</div>
-        <div>3、掌握Vue、React、Echarts、JQuery、Jenkins 以及微信小程序 等一些技术和主流框架</div>
-        <div>4、熟练使用Vue 框架vue-router、Vue-cli 脚手架进行MVVM设计模式下的页面搭建与前后端数据交互</div>
-        <div>5、熟练使用 v-form 搭建动态表单项目，实现无代码拖拉拽生成表单页面</div>
-        <div>6、熟练使用ElementUI、Ant Designer、iview、vantUI等一些PC端和移动端的UI库</div>
+        <div>面试官你好，我是陈志浩，在2016年-2020年就读于华南农业大学软件工程专业，在学校学习了计算机网络、数据结构、计算机组成原理、C语言等计算机基础课程。因为在毕业设计中的后台语言用的是nodejs，数据库是mangoDB，所以对这两个技术有一定的了解。在2019年11月份到2020年5月份在深圳绿米联创科技有限公司实习，实习的主要内容是负责公司中国官方的维护和外国官网的开发，这个项目是完全基于html、css和js的，没有用到其他框架。同时负责基于Vue和iVew的APP后台管理系统的开发以及社区论坛网站的开发。其中也接触了一部分嵌入APP的H5页面的需求以及基于原生微信小程序的开发的项目。从2020年7月份开始到现在，一直就职于中邮消费金融有限公司，在目前这家公司负责过基于React+umi+dva+antd的审批流中心的系统，同时负责该系统的移动端项目，移动端的项目是基于Vue和vantUI、cubeUI的，移动端也会对这些组件库根据系统的特点，进行二次封装，这两个系统从搭建到每个版本的迭代都是我来负责的。同时还负责基于vue+elementUI的工作协同平台等项目。我们的团队注重代码质量和团队协作，我们使用了ESlint、Prettier等工具来保持代码的一致性和可读性，同时也使用了Git等版本控制工具来协作开发。谢谢</div>
       </div>
       <myTitleVue title="Jenkins"/>
       <div class="br-left">
@@ -112,6 +107,7 @@ export default {
     margin-left: 41px;
     padding-top: 16px;
     padding-left: 30px;
+    padding-right: 60px;
     line-height: 28px;
     border-left: 1px solid #c0ead8;
   }
